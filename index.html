@@ -1,0 +1,1296 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cartier District</title>
+<meta name="description" content="Cartier District, tienda en Concepción. Envíos dentro de Concepción y retiro en conserjería con pago previo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: barra superior con costura "selvedge", catálogo en grilla, checkout y panel en una columna de lectura */
+:root {
+  --bg: #eef0f4;
+  --surface: #ffffff;
+  --ink: #131a2c;
+  --muted: #586078;
+  --line: #d6dae4;
+  --denim: #283d70;
+  --denim-soft: #e3e8f4;
+  --selvedge: #c4342b;
+  --on-selvedge: #ffffff;
+  --ok: #1d7448;
+  --ok-soft: #e1f2e8;
+  --warn: #9a5c00;
+  --warn-soft: #fbefd9;
+  --bad: #b0251c;
+  --bad-soft: #fbe3e1;
+  --info: #234f9c;
+  --info-soft: #e2eafb;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 10px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d111c; --surface: #151b2b; --ink: #e8ebf3; --muted: #9aa3ba; --line: #283048;
+    --denim: #9db2ec; --denim-soft: #1c2640; --selvedge: #ee6b60; --on-selvedge: #1a0c0b;
+    --ok: #63c896; --ok-soft: #13291f; --warn: #e5ac4a; --warn-soft: #2c2210;
+    --bad: #f07c73; --bad-soft: #301615; --info: #8fb2f5; --info-soft: #17223c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d111c; --surface: #151b2b; --ink: #e8ebf3; --muted: #9aa3ba; --line: #283048;
+  --denim: #9db2ec; --denim-soft: #1c2640; --selvedge: #ee6b60; --on-selvedge: #1a0c0b;
+  --ok: #63c896; --ok-soft: #13291f; --warn: #e5ac4a; --warn-soft: #2c2210;
+  --bad: #f07c73; --bad-soft: #301615; --info: #8fb2f5; --info-soft: #17223c;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: var(--denim); }
+[hidden] { display: none !important; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--selvedge); outline-offset: 2px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.lectura { max-width: 680px; }
+main { padding-block: 24px 64px; }
+h1, h2, h3 { font-family: var(--display); font-stretch: 112%; line-height: 1.1; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 1.25rem; font-weight: 750; }
+h3 { font-size: 1.02rem; font-weight: 700; }
+p { margin: 0; }
+.mono { font-family: var(--mono); }
+.muted { color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.stack-s { display: flex; flex-direction: column; gap: 8px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.between { justify-content: space-between; }
+.eyebrow { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+/* Barra superior */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--surface); }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); }
+.top-in { display: flex; align-items: center; gap: 12px 20px; flex-wrap: wrap; padding-block: 12px; }
+.marca { font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: 1.3rem; text-decoration: none; color: var(--ink); letter-spacing: -0.01em; margin-right: auto; }
+.nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.nav a { text-decoration: none; color: var(--muted); padding: 6px 10px; border-radius: 999px; font-weight: 600; font-size: 0.92rem; }
+.nav a:hover { color: var(--ink); background: var(--bg); }
+.nav a.on { color: var(--ink); background: var(--denim-soft); }
+.badge { display: inline-grid; place-items: center; min-width: 1.4em; height: 1.4em; padding: 0 0.35em; border-radius: 999px; background: var(--selvedge); color: var(--on-selvedge); font-size: 0.75rem; font-family: var(--mono); margin-left: 4px; }
+/* Costura selvedge: la orilla roja y blanca del denim de telar */
+.selvedge { height: 6px; background: repeating-linear-gradient(90deg, var(--selvedge) 0 14px, var(--surface) 14px 18px); border-bottom: 1px solid var(--line); }
+
+/* Botones y campos */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 10px 16px; border-radius: 999px; font-weight: 650; cursor: pointer; text-decoration: none; min-height: 44px; }
+.btn:hover { border-color: var(--muted); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-main { background: var(--selvedge); border-color: var(--selvedge); color: var(--on-selvedge); }
+.btn-main:hover { filter: brightness(1.05); border-color: var(--selvedge); }
+.btn-denim { background: var(--denim); border-color: var(--denim); color: var(--surface); }
+.btn-ok { background: var(--ok); border-color: var(--ok); color: var(--surface); }
+.btn-bad { color: var(--bad); border-color: var(--bad); }
+.btn-wide { width: 100%; }
+.btn-mini { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 4px 10px; font-size: 0.82rem; cursor: pointer; font-weight: 600; }
+.link { background: none; border: 0; padding: 0; color: var(--denim); cursor: pointer; text-decoration: underline; font-weight: 600; }
+label.campo { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: 0.92rem; }
+label.campo small { font-weight: 400; color: var(--muted); }
+input[type=text], input[type=email], input[type=password], input[type=tel], input[type=number], input[type=url], select, textarea {
+  width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--surface); min-height: 44px; }
+textarea { min-height: 80px; resize: vertical; }
+.tel { display: flex; align-items: stretch; }
+.tel span { display: grid; place-items: center; padding: 0 10px; border: 1px solid var(--line); border-right: 0; border-radius: 8px 0 0 8px; background: var(--bg); font-family: var(--mono); font-size: 0.9rem; }
+.tel input { border-radius: 0 8px 8px 0; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 0.94rem; }
+.check input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--selvedge); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+
+/* Superficies */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+.aviso { border-radius: var(--radius); padding: 12px 14px; font-size: 0.95rem; }
+.aviso.ok { background: var(--ok-soft); color: var(--ok); }
+.aviso.warn { background: var(--warn-soft); color: var(--warn); }
+.aviso.bad { background: var(--bad-soft); color: var(--bad); }
+.aviso.info { background: var(--info-soft); color: var(--info); }
+.aviso strong { color: inherit; }
+.pill { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 2px 10px; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
+.pill.neutral { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+.pill.ok { background: var(--ok-soft); color: var(--ok); }
+.pill.warn { background: var(--warn-soft); color: var(--warn); }
+.pill.bad { background: var(--bad-soft); color: var(--bad); }
+.pill.info { background: var(--info-soft); color: var(--info); }
+.pill.done { background: var(--denim-soft); color: var(--denim); }
+
+/* Catálogo */
+.intro { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.entrega-band { display: flex; flex-wrap: wrap; gap: 8px; }
+.filtros { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { border: 1px solid var(--line); background: var(--surface); padding: 6px 14px; border-radius: 999px; cursor: pointer; font-weight: 600; font-size: 0.9rem; min-height: 36px; }
+.chip.on { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.chip.talla { font-family: var(--mono); min-width: 48px; }
+.grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 16px; }
+.card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.15s ease, border-color 0.15s ease; }
+.card:hover { transform: translateY(-2px); border-color: var(--muted); }
+.card-body { padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 6px; }
+.precio { font-family: var(--mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+.foto { aspect-ratio: 4 / 5; width: 100%; max-width: 100%; object-fit: cover; background: var(--denim-soft); }
+.foto-vacia { aspect-ratio: 4 / 5; width: 100%; max-width: 100%; display: grid; place-items: center; background: var(--denim); color: var(--surface); position: relative; overflow: hidden; }
+.foto-vacia::after { content: ""; position: absolute; left: 0; right: 0; bottom: 18px; height: 5px; background: repeating-linear-gradient(90deg, var(--selvedge) 0 14px, transparent 14px 18px); }
+.foto-vacia span { font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: 2.6rem; letter-spacing: -0.02em; opacity: 0.9; }
+.agotado { opacity: 0.55; }
+
+/* Producto */
+.producto { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+@media (min-width: 760px) { .producto { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; } }
+.galeria { display: flex; flex-direction: column; gap: 8px; }
+.galeria .foto, .galeria .foto-vacia { border-radius: var(--radius); }
+.miniaturas { display: flex; gap: 8px; overflow-x: auto; }
+.miniaturas button { border: 2px solid transparent; padding: 0; border-radius: 8px; overflow: hidden; width: 64px; flex: 0 0 auto; cursor: pointer; background: none; }
+.miniaturas button.on { border-color: var(--selvedge); }
+.miniaturas img { aspect-ratio: 1; object-fit: cover; }
+.tag-talla { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 58px; min-height: 52px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); cursor: pointer; font-family: var(--mono); }
+.tag-talla b { font-size: 1.05rem; }
+.tag-talla small { font-size: 0.68rem; color: var(--muted); }
+.tag-talla.on { border: 2px solid var(--ink); }
+.tag-talla:disabled { cursor: not-allowed; text-decoration: line-through; opacity: 0.45; }
+.stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.stepper button { width: 42px; height: 42px; border: 0; background: var(--surface); font-size: 1.1rem; cursor: pointer; }
+.stepper span { min-width: 36px; text-align: center; font-family: var(--mono); }
+
+/* Carrito y pedidos */
+.linea { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.linea:last-child { border-bottom: 0; }
+.linea .foto, .linea .foto-vacia { aspect-ratio: 1; border-radius: 8px; }
+.linea .foto-vacia span { font-size: 1.1rem; }
+.linea .foto-vacia::after { bottom: 6px; height: 3px; }
+.opcion { display: flex; gap: 12px; align-items: flex-start; border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; cursor: pointer; background: var(--surface); }
+.opcion.on { border: 2px solid var(--ink); padding: 13px; }
+.opcion input { margin-top: 4px; accent-color: var(--selvedge); width: 18px; height: 18px; }
+.totales { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; font-variant-numeric: tabular-nums; }
+.totales dt { color: var(--muted); }
+.totales dd { margin: 0; text-align: right; font-family: var(--mono); }
+.totales .fuerte { color: var(--ink); font-weight: 700; }
+.ticket { font-family: var(--mono); font-size: 1.05rem; letter-spacing: 0.04em; background: var(--bg); border: 1px dashed var(--muted); padding: 2px 8px; border-radius: 6px; }
+.codigo-retiro { font-family: var(--mono); font-size: 2.4rem; font-weight: 500; letter-spacing: 0.2em; text-align: center; padding: 10px; border: 2px dashed var(--ok); border-radius: var(--radius); }
+.tabla-datos { display: grid; grid-template-columns: max-content minmax(0, 1fr) auto; gap: 8px 12px; align-items: center; }
+.tabla-datos dt { color: var(--muted); font-size: 0.9rem; }
+.tabla-datos dd { margin: 0; font-family: var(--mono); overflow-wrap: anywhere; }
+.timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.timeline li { display: grid; grid-template-columns: 12px minmax(0, 1fr); gap: 10px; }
+.timeline li::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--denim); margin-top: 7px; }
+.lista-pedidos { display: flex; flex-direction: column; gap: 10px; }
+.item-pedido { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; color: inherit; }
+.item-pedido:hover { border-color: var(--muted); }
+
+/* Panel */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.tabs a { text-decoration: none; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-weight: 650; background: var(--surface); }
+.tabs a.on { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.tarjeta-pago { border-left: 4px solid var(--warn); }
+.tarjeta-pago.pasarela { border-left-color: var(--ok); }
+.tarjeta-pago.cerrado { border-left-color: var(--bad); }
+.comprobante { max-height: 420px; width: auto; border-radius: 8px; border: 1px solid var(--line); }
+.tabla-scroll { overflow-x: auto; }
+table.edit { border-collapse: collapse; width: 100%; min-width: 560px; }
+table.edit th, table.edit td { padding: 6px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: middle; }
+table.edit th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-family: var(--mono); font-weight: 500; }
+table.edit input[type=text], table.edit input[type=number] { min-height: 38px; padding: 6px 8px; }
+.fotos-admin { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+.fotos-admin figure { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.fotos-admin img { aspect-ratio: 4 / 5; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+.etiqueta-bolsa { border: 2px solid var(--ink); border-radius: var(--radius); padding: 16px; text-align: center; display: flex; flex-direction: column; gap: 4px; }
+
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 40; background: var(--ink); color: var(--surface); padding: 12px 18px; border-radius: 999px; font-weight: 600; box-shadow: 0 8px 24px rgba(0,0,0,0.18); max-width: calc(100% - 32px); }
+.toast.bad { background: var(--bad); color: var(--surface); }
+footer { border-top: 1px solid var(--line); padding-block: 24px; color: var(--muted); font-size: 0.9rem; }
+.cargando { color: var(--muted); padding-block: 24px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div id="app"><div class="wrap cargando">Cargando la tienda…</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/preact/standalone.umd.js"></script>
+<script>
+"use strict";
+// ======================= Configuración de la tienda =======================
+const NOMBRE_TIENDA = "Cartier District";          // nombre visible de la tienda
+const WHATSAPP_TIENDA = "";                 // ej. "56912345678" (sin +). Vacío = no se muestra el botón
+const SUPABASE_URL = "https://qpwjrxgbjhofrbvcdaak.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFwd2pyeGdiamhvZnJidmNkYWFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0OTIxODYsImV4cCI6MjEwOTA2ODE4Nn0.2ZXm2hsQ9wMhTn4RAllsXdNXKg5zTeE9j5WtAO_hsz8"; // llave pública (anon): segura en el navegador, la protege RLS
+const PASARELAS = { flow: false, mercadopago: false }; // se activan cuando estén configuradas
+// ==========================================================================
+
+const { html, render, useState, useEffect, useMemo, useCallback, useContext, createContext } = htmPreact;
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: true, autoRefreshToken: true } });
+const Ctx = createContext(null);
+
+// ---------- utilidades ----------
+const clp = n => "$" + Math.round(Number(n) || 0).toLocaleString("es-CL");
+const fecha = iso => iso ? new Date(iso).toLocaleString("es-CL", { timeZone: "America/Santiago", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "";
+const fechaCorta = iso => iso ? new Date(iso).toLocaleDateString("es-CL", { timeZone: "America/Santiago", weekday: "long", day: "numeric", month: "long" }) : "";
+const imgUrl = path => path ? `${SUPABASE_URL}/storage/v1/object/public/productos/${path}` : "";
+const ORDEN_LETRAS = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
+const pesoTalla = t => { const n = Number(t); if (!Number.isNaN(n)) return n; const i = ORDEN_LETRAS.indexOf(String(t).toUpperCase()); return 1000 + (i < 0 ? 99 : i); };
+const ordenarTallas = arr => [...arr].sort((a, b) => pesoTalla(a) - pesoTalla(b) || String(a).localeCompare(String(b)));
+const slugify = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+const iniciales = s => String(s || "?").split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join("").toUpperCase();
+const CART_KEY = "tienda.carrito.v1";
+const leerCarrito = () => { try { const c = JSON.parse(localStorage.getItem(CART_KEY)); return Array.isArray(c) ? c : []; } catch (e) { return []; } };
+const guardarCarrito = c => { try { localStorage.setItem(CART_KEY, JSON.stringify(c)); } catch (e) { /* sin almacenamiento */ } };
+
+function normalizarTelefono(t) {
+  let d = String(t || "").replace(/\D/g, "");
+  if (d.startsWith("56")) d = d.slice(2);
+  if (d.length === 8) d = "9" + d;
+  return /^9\d{8}$/.test(d) ? "+56" + d : null;
+}
+
+function traducirError(err) {
+  const m = (err && (err.message || err.error_description)) || String(err || "");
+  if (/Invalid login credentials/i.test(m)) return "Correo o contraseña incorrectos.";
+  if (/already registered|already been registered/i.test(m)) return "Ese correo ya tiene cuenta. Ingresa con tu contraseña.";
+  if (/at least 6 characters/i.test(m)) return "La contraseña debe tener al menos 6 caracteres.";
+  if (/rate limit|too many/i.test(m)) return "Demasiados intentos seguidos. Espera un momento y vuelve a probar.";
+  if (/Failed to fetch|NetworkError/i.test(m)) return "No hay conexión con la tienda. Revisa tu internet y vuelve a intentar.";
+  if (/Email not confirmed/i.test(m)) return "Tu correo aún no está confirmado. Revisa tu bandeja de entrada.";
+  if (/mime type|not supported/i.test(m)) return "Ese tipo de archivo no se acepta. Sube una foto (JPG, PNG, WEBP) o un PDF.";
+  if (/exceeded the maximum allowed size|too large/i.test(m)) return "El archivo pesa más de 5 MB. Sube una foto más liviana.";
+  return m;
+}
+
+const ESTADOS = {
+  pendiente_pago:       { label: "Por pagar",         tono: "neutral" },
+  pendiente_validacion: { label: "Validando pago",    tono: "warn" },
+  pagado:               { label: "Pago validado",     tono: "ok" },
+  listo_para_retiro:    { label: "En conserjería",    tono: "ok" },
+  en_despacho:          { label: "En camino",         tono: "info" },
+  entregado:            { label: "Entregado",         tono: "done" },
+  cancelado:            { label: "Cancelado",         tono: "bad" },
+  expirado:             { label: "Reserva vencida",   tono: "bad" },
+};
+const ABIERTOS = ["pendiente_pago", "pendiente_validacion", "pagado", "listo_para_retiro", "en_despacho"];
+const EstadoPill = ({ estado }) => { const e = ESTADOS[estado] || { label: estado, tono: "neutral" }; return html`<span class=${"pill " + e.tono}>${e.label}</span>`; };
+const entregaTexto = m => m === "retiro_conserjeria" ? "Retiro en conserjería" : "Envío a domicilio";
+const bancoListo = c => !!(c && c.banco_numero && !String(c.banco_numero).includes("<"));
+const lineaBanco = c => bancoListo(c) ? [c.banco_nombre, c.banco_tipo_cuenta, c.banco_numero, c.banco_rut, c.banco_titular, c.banco_email].filter(Boolean).join(" · ") : "";
+
+function useRuta() {
+  const [hash, setHash] = useState(location.hash || "#/");
+  useEffect(() => {
+    const f = () => { setHash(location.hash || "#/"); window.scrollTo(0, 0); };
+    addEventListener("hashchange", f);
+    return () => removeEventListener("hashchange", f);
+  }, []);
+  return hash.replace(/^#\/?/, "").split("/").filter(Boolean).map(decodeURIComponent);
+}
+const ir = ruta => { location.hash = "#/" + ruta; };
+
+// ---------- piezas comunes ----------
+function Foto({ path, nombre, clase }) {
+  const [rota, setRota] = useState(false);
+  if (path && !rota) return html`<img class=${"foto " + (clase || "")} src=${imgUrl(path)} alt=${nombre} loading="lazy" onError=${() => setRota(true)} />`;
+  return html`<div class=${"foto-vacia " + (clase || "")} role="img" aria-label=${nombre}><span>${iniciales(nombre)}</span></div>`;
+}
+
+function Copiar({ texto, label }) {
+  const [ok, setOk] = useState(false);
+  const copiar = async () => {
+    try { await navigator.clipboard.writeText(texto); setOk(true); setTimeout(() => setOk(false), 1500); }
+    catch (e) { setOk(false); }
+  };
+  return html`<button type="button" class="btn-mini" onClick=${copiar}>${ok ? "Copiado" : (label || "Copiar")}</button>`;
+}
+
+function MsgError({ msg }) { return msg ? html`<p class="aviso bad" role="alert">${msg}</p>` : null; }
+
+// ---------- catálogo ----------
+function Catalogo() {
+  const { cfg } = useContext(Ctx);
+  const [items, setItems] = useState(null);
+  const [cat, setCat] = useState("");
+  const [talla, setTalla] = useState("");
+  const [error, setError] = useState("");
+  useEffect(() => {
+    sb.from("v_catalogo").select("*").order("creado_at", { ascending: false })
+      .then(({ data, error }) => { if (error) setError(traducirError(error)); setItems(data || []); });
+  }, []);
+  const cats = useMemo(() => [...new Set((items || []).map(p => p.categoria))].sort(), [items]);
+  const tallas = useMemo(() => ordenarTallas([...new Set((items || []).flatMap(p => p.tallas_disponibles || []))]), [items]);
+  const lista = (items || [])
+    .filter(p => (!cat || p.categoria === cat) && (!talla || (p.tallas_disponibles || []).includes(talla)))
+    .sort((a, b) => (b.stock_total > 0) - (a.stock_total > 0));
+
+  return html`<div class="wrap">
+    <section class="intro">
+      <p class="eyebrow">Concepción · Biobío</p>
+      <h1>Elige tu talla y te lo dejamos listo</h1>
+      <div class="entrega-band">
+        <span class="pill info">Envíos dentro de Concepción</span>
+        <span class="pill ok">Retiro en conserjería con pago previo</span>
+      </div>
+    </section>
+    <${MsgError} msg=${error} />
+    ${items && items.length > 0 && html`<div class="filtros">
+      ${cats.length > 1 && html`<div class="chips" role="group" aria-label="Categoría">
+        <button class=${"chip " + (cat ? "" : "on")} onClick=${() => setCat("")}>Todo</button>
+        ${cats.map(c => html`<button key=${c} class=${"chip " + (cat === c ? "on" : "")} onClick=${() => setCat(cat === c ? "" : c)}>${c[0].toUpperCase() + c.slice(1)}</button>`)}
+      </div>`}
+      ${tallas.length > 0 && html`<div class="chips" role="group" aria-label="Talla">
+        <button class=${"chip talla " + (talla ? "" : "on")} onClick=${() => setTalla("")}>Todas</button>
+        ${tallas.map(t => html`<button key=${t} class=${"chip talla " + (talla === t ? "on" : "")} onClick=${() => setTalla(talla === t ? "" : t)}>${t}</button>`)}
+      </div>`}
+    </div>`}
+    ${items === null ? html`<p class="cargando">Cargando productos…</p>` :
+      lista.length === 0 ? html`<div class="panel stack-s"><h2>${talla ? `No nos queda talla ${talla} en este momento` : "Todavía no hay productos publicados"}</h2>
+        <p class="muted">${talla ? "Prueba con otra talla o vuelve en unos días: reponemos seguido." : "Vuelve pronto."}</p></div>` :
+      html`<div class="grilla">${lista.map(p => html`<a key=${p.id} class=${"card " + (p.stock_total > 0 ? "" : "agotado")} href=${"#/p/" + encodeURIComponent(p.slug)}>
+        <${Foto} path=${p.portada} nombre=${p.nombre} />
+        <div class="card-body">
+          <h3>${p.nombre}</h3>
+          <p class="precio">${clp(p.precio_desde)}</p>
+          <p class="mono muted" style="font-size:0.82rem">${(p.tallas_disponibles || []).length ? "Tallas " + p.tallas_disponibles.join(" · ") : "Agotado"}</p>
+          ${p.stock_total > 0 && p.stock_total <= 2 && html`<span><span class="pill warn">Últimas unidades</span></span>`}
+        </div></a>`)}</div>`}
+  </div>`;
+}
+
+// ---------- producto ----------
+function Producto({ slug }) {
+  const { carrito, setCarrito, avisar } = useContext(Ctx);
+  const [p, setP] = useState(undefined);
+  const [vars, setVars] = useState([]);
+  const [sel, setSel] = useState(null);
+  const [cant, setCant] = useState(1);
+  const [foto, setFoto] = useState(0);
+  useEffect(() => {
+    (async () => {
+      const { data } = await sb.from("productos").select("*, variantes_tallas(*)").eq("slug", slug).maybeSingle();
+      setP(data || null);
+      if (data) setVars((data.variantes_tallas || []).filter(v => v.activo).sort((a, b) => a.orden - b.orden || pesoTalla(a.talla) - pesoTalla(b.talla)));
+    })();
+  }, [slug]);
+  if (p === undefined) return html`<div class="wrap cargando">Cargando…</div>`;
+  if (p === null) return html`<div class="wrap"><div class="panel stack-s"><h2>No encontramos este producto</h2><a href="#/">Volver al catálogo</a></div></div>`;
+  const v = vars.find(x => x.id === sel);
+  const precio = v && v.precio_override ? v.precio_override : p.precio;
+  const enCarrito = v ? (carrito.find(l => l.variante_id === v.id) || { cantidad: 0 }).cantidad : 0;
+  const maximo = v ? Math.max(0, v.stock - enCarrito) : 0;
+  const imgs = p.imagenes || [];
+  const agregar = () => {
+    if (!v || cant < 1 || cant > maximo) return;
+    const otras = carrito.filter(l => l.variante_id !== v.id);
+    setCarrito([...otras, { variante_id: v.id, slug: p.slug, nombre: p.nombre, talla: v.talla, precio, cantidad: enCarrito + cant, portada: imgs[0] || null }]);
+    setCant(1);
+    avisar(`Agregado: ${p.nombre}, talla ${v.talla}`);
+  };
+  return html`<div class="wrap"><p style="margin-bottom:16px"><a href="#/">← Catálogo</a></p>
+    <div class="producto">
+      <div class="galeria">
+        <${Foto} path=${imgs[foto]} nombre=${p.nombre} />
+        ${imgs.length > 1 && html`<div class="miniaturas">${imgs.map((im, i) => html`<button key=${im} class=${i === foto ? "on" : ""} onClick=${() => setFoto(i)} aria-label=${"Foto " + (i + 1)}><img src=${imgUrl(im)} alt="" /></button>`)}</div>`}
+      </div>
+      <div class="stack">
+        <div class="stack-s"><p class="eyebrow">${p.categoria}</p><h1>${p.nombre}</h1><p class="precio" style="font-size:1.4rem">${clp(precio)}</p></div>
+        ${p.descripcion && html`<p>${p.descripcion}</p>`}
+        <div class="stack-s">
+          <p style="font-weight:650">Talla</p>
+          ${vars.length === 0 ? html`<p class="muted">Sin tallas disponibles por ahora.</p>` :
+            html`<div class="chips" role="radiogroup" aria-label="Talla">${vars.map(x => html`<button key=${x.id} role="radio" aria-checked=${sel === x.id} class=${"tag-talla " + (sel === x.id ? "on" : "")} disabled=${x.stock <= 0} onClick=${() => { setSel(x.id); setCant(1); }}>
+              <b>${x.talla}</b><small>${x.stock <= 0 ? "agotada" : x.stock <= 2 ? `quedan ${x.stock}` : "disponible"}</small></button>`)}</div>`}
+        </div>
+        ${v && html`<div class="row">
+          <div class="stepper" aria-label="Cantidad">
+            <button type="button" onClick=${() => setCant(Math.max(1, cant - 1))} aria-label="Menos">−</button>
+            <span>${cant}</span>
+            <button type="button" onClick=${() => setCant(Math.min(maximo, cant + 1))} aria-label="Más" disabled=${cant >= maximo}>+</button>
+          </div>
+          ${enCarrito > 0 && html`<span class="muted">Ya tienes ${enCarrito} en el carrito</span>`}
+        </div>`}
+        <div class="row">
+          <button class="btn btn-main" disabled=${!v || maximo < 1} onClick=${agregar}>${!v ? "Elige una talla" : maximo < 1 ? "Ya tienes todo el stock" : "Agregar al carrito"}</button>
+          ${carrito.length > 0 && html`<a class="btn" href="#/carrito">Ver carrito</a>`}
+        </div>
+      </div>
+    </div></div>`;
+}
+
+// ---------- autenticación y perfil ----------
+function Auth({ titulo }) {
+  const [modo, setModo] = useState("registro");
+  const [f, setF] = useState({ nombre: "", telefono: "", email: "", password: "" });
+  const [error, setError] = useState("");
+  const [info, setInfo] = useState("");
+  const [cargando, setCargando] = useState(false);
+  const set = k => e => setF({ ...f, [k]: e.target.value });
+  const enviar = async e => {
+    e.preventDefault(); setError(""); setInfo(""); setCargando(true);
+    try {
+      if (modo === "login") {
+        const { error } = await sb.auth.signInWithPassword({ email: f.email.trim(), password: f.password });
+        if (error) throw error;
+      } else if (modo === "registro") {
+        const tel = normalizarTelefono(f.telefono);
+        if (f.nombre.trim().length < 2) throw new Error("Escribe tu nombre.");
+        if (!tel) throw new Error("Escribe un celular válido: 9 dígitos que empiecen con 9.");
+        const { data, error } = await sb.auth.signUp({ email: f.email.trim(), password: f.password, options: { data: { nombre: f.nombre.trim(), telefono: tel } } });
+        if (error) throw error;
+        if (!data.session) setInfo("Te enviamos un correo para confirmar tu cuenta. Confírmala y vuelve a ingresar.");
+      } else {
+        const { error } = await sb.auth.resetPasswordForEmail(f.email.trim(), { redirectTo: location.origin + location.pathname });
+        if (error) throw error;
+        setInfo("Si el correo tiene cuenta, te llegará un enlace para crear una contraseña nueva.");
+      }
+    } catch (err) { setError(traducirError(err)); }
+    finally { setCargando(false); }
+  };
+  return html`<form class="panel stack" onSubmit=${enviar}>
+    <div class="stack-s"><h2>${titulo || (modo === "login" ? "Ingresa a tu cuenta" : modo === "registro" ? "Crea tu cuenta" : "Recupera tu contraseña")}</h2>
+      ${modo !== "recuperar" && html`<p class="muted">${modo === "login" ? "¿Primera vez? " : "¿Ya tienes cuenta? "}<button type="button" class="link" onClick=${() => { setModo(modo === "login" ? "registro" : "login"); setError(""); }}>${modo === "login" ? "Crea tu cuenta" : "Ingresa aquí"}</button></p>`}
+    </div>
+    ${modo === "registro" && html`<div class="grid2">
+      <label class="campo" for="r-nombre">Nombre y apellido<input id="r-nombre" type="text" autocomplete="name" required value=${f.nombre} onInput=${set("nombre")} /></label>
+      <label class="campo" for="r-tel">Celular (WhatsApp)<div class="tel"><span>+56</span><input id="r-tel" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="9 1234 5678" required value=${f.telefono} onInput=${set("telefono")} /></div></label>
+    </div>`}
+    <label class="campo" for="a-email">Correo<input id="a-email" type="email" autocomplete="email" required value=${f.email} onInput=${set("email")} /></label>
+    ${modo !== "recuperar" && html`<label class="campo" for="a-pass">Contraseña <small>${modo === "registro" ? "Mínimo 6 caracteres" : ""}</small><input id="a-pass" type="password" autocomplete=${modo === "login" ? "current-password" : "new-password"} minlength="6" required value=${f.password} onInput=${set("password")} /></label>`}
+    <${MsgError} msg=${error} />
+    ${info && html`<p class="aviso info">${info}</p>`}
+    <button class="btn btn-main" disabled=${cargando}>${cargando ? "Un momento…" : modo === "login" ? "Ingresar" : modo === "registro" ? "Crear cuenta" : "Enviar enlace"}</button>
+    ${modo === "login" && html`<button type="button" class="link" onClick=${() => setModo("recuperar")}>Olvidé mi contraseña</button>`}
+    ${modo === "recuperar" && html`<button type="button" class="link" onClick=${() => setModo("login")}>Volver a ingresar</button>`}
+  </form>`;
+}
+
+function NuevaClave({ alTerminar }) {
+  const [p, setP] = useState(""); const [error, setError] = useState(""); const [ok, setOk] = useState(false);
+  const guardar = async e => {
+    e.preventDefault(); setError("");
+    const { error } = await sb.auth.updateUser({ password: p });
+    if (error) setError(traducirError(error)); else { setOk(true); setTimeout(alTerminar, 1200); }
+  };
+  return html`<div class="wrap lectura"><form class="panel stack" onSubmit=${guardar}><h2>Crea tu contraseña nueva</h2>
+    <label class="campo" for="n-pass">Contraseña nueva<input id="n-pass" type="password" minlength="6" required autocomplete="new-password" value=${p} onInput=${e => setP(e.target.value)} /></label>
+    <${MsgError} msg=${error} />${ok && html`<p class="aviso ok">Listo, contraseña actualizada.</p>`}
+    <button class="btn btn-main">Guardar</button></form></div>`;
+}
+
+function PerfilForm({ alGuardar }) {
+  const { session, perfil, recargarPerfil, avisar } = useContext(Ctx);
+  const meta = (session && session.user.user_metadata) || {};
+  const [f, setF] = useState({
+    nombre: (perfil && perfil.nombre) || meta.nombre || "",
+    telefono: ((perfil && perfil.telefono) || meta.telefono || "").replace(/^\+56/, ""),
+    direccion: (perfil && perfil.direccion) || "", comuna: (perfil && perfil.comuna) || "Concepción",
+    referencia: (perfil && perfil.referencia) || "", acepta_whatsapp: perfil ? perfil.acepta_whatsapp : true,
+  });
+  const [error, setError] = useState(""); const [cargando, setCargando] = useState(false);
+  const set = k => e => setF({ ...f, [k]: e.target.type === "checkbox" ? e.target.checked : e.target.value });
+  const guardar = async e => {
+    e.preventDefault(); setError("");
+    const tel = normalizarTelefono(f.telefono);
+    if (f.nombre.trim().length < 2) return setError("Escribe tu nombre.");
+    if (!tel) return setError("Escribe un celular válido: 9 dígitos que empiecen con 9.");
+    setCargando(true);
+    const datos = { nombre: f.nombre.trim(), telefono: tel, direccion: f.direccion.trim() || null, comuna: f.comuna.trim() || null, referencia: f.referencia.trim() || null, acepta_whatsapp: f.acepta_whatsapp };
+    const r = perfil ? await sb.from("clientes").update(datos).eq("id", session.user.id)
+                     : await sb.from("clientes").insert({ id: session.user.id, email: session.user.email, ...datos });
+    setCargando(false);
+    if (r.error) return setError(traducirError(r.error));
+    await recargarPerfil();
+    avisar("Datos guardados");
+    alGuardar && alGuardar();
+  };
+  return html`<form class="panel stack" onSubmit=${guardar}>
+    <div class="stack-s"><h2>${perfil ? "Tus datos" : "Completa tus datos"}</h2><p class="muted">Los usamos solo para coordinar tus pedidos.</p></div>
+    <div class="grid2">
+      <label class="campo" for="p-nombre">Nombre y apellido<input id="p-nombre" type="text" required value=${f.nombre} onInput=${set("nombre")} /></label>
+      <label class="campo" for="p-tel">Celular (WhatsApp)<div class="tel"><span>+56</span><input id="p-tel" type="tel" inputmode="numeric" required value=${f.telefono} onInput=${set("telefono")} /></div></label>
+      <label class="campo" for="p-dir">Dirección para envíos <small>Opcional</small><input id="p-dir" type="text" autocomplete="street-address" value=${f.direccion} onInput=${set("direccion")} /></label>
+      <label class="campo" for="p-ref">Depto, torre o referencia <small>Opcional</small><input id="p-ref" type="text" value=${f.referencia} onInput=${set("referencia")} /></label>
+    </div>
+    <label class="check" for="p-wa"><input id="p-wa" type="checkbox" checked=${f.acepta_whatsapp} onChange=${set("acepta_whatsapp")} />Quiero recibir los avisos de mis pedidos por WhatsApp</label>
+    <${MsgError} msg=${error} />
+    <button class="btn btn-main" disabled=${cargando}>${cargando ? "Guardando…" : "Guardar datos"}</button>
+  </form>`;
+}
+
+function Cuenta() {
+  const { session, perfil, esAdmin } = useContext(Ctx);
+  if (!session) return html`<div class="wrap lectura"><${Auth} /></div>`;
+  return html`<div class="wrap lectura stack">
+    <div class="row between"><div class="stack-s"><p class="eyebrow">Tu cuenta</p><h1>${perfil ? "Hola, " + perfil.nombre.split(" ")[0] : "Bienvenido"}</h1><p class="muted">${session.user.email}</p></div>
+      <button class="btn" onClick=${async () => { await sb.auth.signOut(); ir(""); }}>Cerrar sesión</button></div>
+    ${esAdmin && html`<a class="btn btn-denim" href="#/admin">Ir al panel de la tienda</a>`}
+    <${PerfilForm} />
+  </div>`;
+}
+
+// ---------- carrito y checkout ----------
+function Carrito() {
+  const { carrito, setCarrito, session, perfil, cfg, zonas, avisar } = useContext(Ctx);
+  const [stock, setStock] = useState({});
+  const [entrega, setEntrega] = useState("retiro_conserjeria");
+  const [zonaId, setZonaId] = useState("");
+  const [dir, setDir] = useState("");
+  const [ref, setRef] = useState("");
+  const [notas, setNotas] = useState("");
+  const [pago, setPago] = useState("transferencia");
+  const [acepta, setAcepta] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+  const [error, setError] = useState("");
+
+  const revisarStock = useCallback(async () => {
+    const ids = carrito.map(l => l.variante_id);
+    if (!ids.length) return;
+    const { data } = await sb.from("variantes_tallas").select("id, stock, activo, precio_override, productos(precio, activo)").in("id", ids);
+    const m = {}; (data || []).forEach(v => { m[v.id] = v; }); setStock(m);
+    const actualizado = carrito.map(l => { const v = m[l.variante_id]; if (!v) return l; const precio = v.precio_override || (v.productos && v.productos.precio) || l.precio; return precio !== l.precio ? { ...l, precio } : l; });
+    if (actualizado.some((l, i) => l !== carrito[i])) setCarrito(actualizado);
+  }, [carrito.map(l => l.variante_id).join()]);
+  useEffect(() => { revisarStock(); }, [revisarStock]);
+  useEffect(() => { if (perfil) { setDir(d => d || perfil.direccion || ""); setRef(r => r || perfil.referencia || ""); } }, [perfil]);
+  useEffect(() => { if (!zonaId && zonas.length) setZonaId(String(zonas[0].id)); }, [zonas]);
+
+  const disponible = l => { const v = stock[l.variante_id]; if (!v) return null; return v.activo && v.productos && v.productos.activo ? v.stock : 0; };
+  const problemas = carrito.filter(l => { const d = disponible(l); return d !== null && d < l.cantidad; });
+  const zona = zonas.find(z => String(z.id) === String(zonaId));
+  const subtotal = carrito.reduce((a, l) => a + l.precio * l.cantidad, 0);
+  const envio = entrega === "envio_domicilio" ? (zona ? zona.costo : 0) : 0;
+  const total = subtotal + envio;
+  const pct = cfg ? cfg.porcentaje_abono_domicilio : 100;
+  const pagaAhora = entrega === "retiro_conserjeria" ? total : Math.ceil(total * pct / 100);
+  const horas = cfg ? cfg.horas_reserva : 24;
+
+  const cambiarCant = (l, n) => { if (n < 1) return setCarrito(carrito.filter(x => x !== l)); const d = disponible(l); setCarrito(carrito.map(x => x === l ? { ...x, cantidad: d !== null ? Math.min(n, d) : n } : x)); };
+
+  const confirmar = async () => {
+    setError("");
+    if (problemas.length) return setError("Algunas tallas ya no tienen el stock que pediste. Ajusta las cantidades marcadas.");
+    if (entrega === "envio_domicilio" && (!zona || !dir.trim())) return setError("Elige la comuna y escribe la dirección de entrega.");
+    if (!acepta) return setError("Marca la casilla de condiciones para continuar.");
+    setEnviando(true);
+    const { data, error } = await sb.rpc("crear_pedido", {
+      p_items: carrito.map(l => ({ variante_id: l.variante_id, cantidad: l.cantidad })),
+      p_metodo_entrega: entrega, p_metodo_pago: pago,
+      p_zona_id: entrega === "envio_domicilio" ? Number(zonaId) : null,
+      p_direccion: entrega === "envio_domicilio" ? dir.trim() : null,
+      p_referencia: entrega === "envio_domicilio" ? (ref.trim() || null) : null,
+      p_notas: notas.trim() || null,
+    });
+    setEnviando(false);
+    if (error) { setError(traducirError(error)); if (error.hint === "STOCK") revisarStock(); return; }
+    const pedido = Array.isArray(data) ? data[0] : data;
+    setCarrito([]);
+    avisar("¡Pedido creado!");
+    ir("pedido/" + encodeURIComponent(pedido.codigo));
+  };
+
+  if (!carrito.length) return html`<div class="wrap lectura"><div class="panel stack-s"><h1>Tu carrito está vacío</h1><p class="muted">Elige un producto y una talla para empezar.</p><a class="btn btn-main" href="#/">Ver catálogo</a></div></div>`;
+
+  return html`<div class="wrap lectura stack">
+    <h1>Tu carrito</h1>
+    <section class="panel" aria-label="Productos">${carrito.map(l => { const d = disponible(l); const falta = d !== null && d < l.cantidad; return html`<div class="linea" key=${l.variante_id}>
+      <${Foto} path=${l.portada} nombre=${l.nombre} />
+      <div class="stack-s" style="gap:2px"><a href=${"#/p/" + encodeURIComponent(l.slug)} style="color:inherit;font-weight:650">${l.nombre}</a>
+        <span class="mono muted" style="font-size:0.85rem">Talla ${l.talla} · ${clp(l.precio)} c/u</span>
+        ${falta && html`<span class="pill bad" style="align-self:flex-start">${d === 0 ? "Se agotó esta talla" : `Solo quedan ${d}`}</span>`}
+      </div>
+      <div class="stack-s" style="align-items:flex-end">
+        <div class="stepper"><button type="button" onClick=${() => cambiarCant(l, l.cantidad - 1)} aria-label="Quitar uno">−</button><span>${l.cantidad}</span><button type="button" onClick=${() => cambiarCant(l, l.cantidad + 1)} aria-label="Agregar uno">+</button></div>
+        <span class="precio">${clp(l.precio * l.cantidad)}</span>
+      </div></div>`; })}
+    </section>
+
+    <section class="stack-s" aria-label="Entrega">
+      <h2>¿Cómo lo recibes?</h2>
+      <label class=${"opcion " + (entrega === "retiro_conserjeria" ? "on" : "")} for="e-retiro"><input id="e-retiro" type="radio" name="entrega" checked=${entrega === "retiro_conserjeria"} onChange=${() => setEntrega("retiro_conserjeria")} />
+        <span class="stack-s" style="gap:2px"><b>Retiro en conserjería · gratis</b><span class="muted">${cfg ? cfg.sector_retiro : "Concepción"}. Dejamos tu pedido en conserjería solo cuando validamos el pago total; ahí te enviamos la dirección, el horario y tu código de retiro.</span></span></label>
+      ${zonas.length > 0 && html`<label class=${"opcion " + (entrega === "envio_domicilio" ? "on" : "")} for="e-envio"><input id="e-envio" type="radio" name="entrega" checked=${entrega === "envio_domicilio"} onChange=${() => setEntrega("envio_domicilio")} />
+        <span class="stack-s" style="gap:2px"><b>Envío a domicilio</b><span class="muted">${zonas.map(z => z.comuna + " " + clp(z.costo)).join(" · ")}. Despachamos cuando validamos tu pago${pct < 100 ? ` (mínimo ${pct}%)` : ""}.</span></span></label>`}
+      ${entrega === "envio_domicilio" && html`<div class="panel stack">
+        <label class="campo" for="c-zona">Comuna<select id="c-zona" value=${zonaId} onChange=${e => setZonaId(e.target.value)}>${zonas.map(z => html`<option key=${z.id} value=${z.id}>${z.comuna} · ${clp(z.costo)}</option>`)}</select></label>
+        <label class="campo" for="c-dir">Dirección<input id="c-dir" type="text" autocomplete="street-address" value=${dir} onInput=${e => setDir(e.target.value)} placeholder="Calle y número" /></label>
+        <label class="campo" for="c-ref">Depto, torre o referencia <small>Opcional</small><input id="c-ref" type="text" value=${ref} onInput=${e => setRef(e.target.value)} /></label>
+      </div>`}
+    </section>
+
+    <section class="stack-s" aria-label="Pago">
+      <h2>¿Cómo pagas?</h2>
+      <label class=${"opcion " + (pago === "transferencia" ? "on" : "")} for="m-transf"><input id="m-transf" type="radio" name="pago" checked=${pago === "transferencia"} onChange=${() => setPago("transferencia")} />
+        <span class="stack-s" style="gap:2px"><b>Transferencia bancaria</b><span class="muted">Al confirmar te mostramos los datos. Transfieres, subes el comprobante y validamos tu pago.</span></span></label>
+      ${PASARELAS.flow && html`<label class=${"opcion " + (pago === "flow" ? "on" : "")} for="m-flow"><input id="m-flow" type="radio" name="pago" checked=${pago === "flow"} onChange=${() => setPago("flow")} /><span><b>Flow</b> <span class="muted">Webpay, tarjetas y otros medios</span></span></label>`}
+      ${PASARELAS.mercadopago && html`<label class=${"opcion " + (pago === "mercadopago" ? "on" : "")} for="m-mp"><input id="m-mp" type="radio" name="pago" checked=${pago === "mercadopago"} onChange=${() => setPago("mercadopago")} /><span><b>Mercado Pago</b></span></label>`}
+    </section>
+
+    <label class="campo" for="c-notas">Nota para la tienda <small>Opcional</small><textarea id="c-notas" value=${notas} onInput=${e => setNotas(e.target.value)} placeholder="Ej.: si el 40 queda justo, prefiero el 42"></textarea></label>
+
+    <section class="panel stack">
+      <dl class="totales">
+        <dt>Productos</dt><dd>${clp(subtotal)}</dd>
+        <dt>${entrega === "envio_domicilio" ? "Envío" + (zona ? " a " + zona.comuna : "") : "Retiro en conserjería"}</dt><dd>${envio ? clp(envio) : "$0"}</dd>
+        <dt class="fuerte">Total</dt><dd class="fuerte">${clp(total)}</dd>
+        ${pagaAhora < total && html`<dt>Pagas ahora (abono)</dt><dd>${clp(pagaAhora)}</dd><dt>Pagas al recibir</dt><dd>${clp(total - pagaAhora)}</dd>`}
+      </dl>
+      <ul class="muted" style="margin:0;padding-left:1.2em;font-size:0.92rem">
+        <li>Te guardamos los productos por ${horas} horas mientras pagas.</li>
+        <li>Validamos cada pago a mano; te avisamos al tiro por WhatsApp.</li>
+        <li>${entrega === "retiro_conserjeria" ? "La conserjería solo entrega con tu nombre y tu código de retiro." : "Si no vas a estar, avísanos para coordinar la entrega."}</li>
+      </ul>
+      ${session && perfil && html`<label class="check" for="c-acepta"><input id="c-acepta" type="checkbox" checked=${acepta} onChange=${e => setAcepta(e.target.checked)} />Acepto estas condiciones y que mis datos se usen para gestionar este pedido.</label>`}
+      <${MsgError} msg=${error} />
+      ${session && perfil && html`<button class="btn btn-main btn-wide" disabled=${enviando} onClick=${confirmar}>${enviando ? "Reservando tus productos…" : `Confirmar pedido · ${clp(pagaAhora)}`}</button>`}
+    </section>
+    ${!session && html`<${Auth} titulo="Para confirmar, crea tu cuenta o ingresa" />`}
+    ${session && !perfil && html`<${PerfilForm} />`}
+  </div>`;
+}
+
+// ---------- pedidos del cliente ----------
+function MisPedidos() {
+  const { session } = useContext(Ctx);
+  const [lista, setLista] = useState(null);
+  useEffect(() => {
+    if (!session) return;
+    sb.from("pedidos").select("id, codigo, estado, total, metodo_entrega, creado_at").eq("cliente_id", session.user.id).order("creado_at", { ascending: false })
+      .then(({ data }) => setLista(data || []));
+  }, [session]);
+  if (!session) return html`<div class="wrap lectura"><${Auth} titulo="Ingresa para ver tus pedidos" /></div>`;
+  return html`<div class="wrap lectura stack"><h1>Mis pedidos</h1>
+    ${lista === null ? html`<p class="cargando">Cargando…</p>` : lista.length === 0 ? html`<div class="panel stack-s"><p>Aún no tienes pedidos.</p><a href="#/">Ver catálogo</a></div>` :
+      html`<div class="lista-pedidos">${lista.map(p => html`<a key=${p.id} class="item-pedido" href=${"#/pedido/" + encodeURIComponent(p.codigo)}>
+        <span class="ticket" style="justify-self:start">${p.codigo}</span><${EstadoPill} estado=${p.estado} />
+        <span class="muted">${fecha(p.creado_at)} · ${entregaTexto(p.metodo_entrega)}</span><span class="precio">${clp(p.total)}</span></a>`)}</div>`}
+  </div>`;
+}
+
+async function prepararArchivo(file) {
+  const ok = ["image/jpeg", "image/png", "image/webp", "application/pdf"];
+  if (ok.includes(file.type)) return file;
+  if (!file.type.startsWith("image/")) return file;
+  try {
+    const bmp = await createImageBitmap(file);
+    const c = document.createElement("canvas"); c.width = bmp.width; c.height = bmp.height;
+    c.getContext("2d").drawImage(bmp, 0, 0);
+    const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.9));
+    return blob ? new File([blob], "comprobante.jpg", { type: "image/jpeg" }) : file;
+  } catch (e) { return file; }
+}
+
+function PedidoCliente({ codigo }) {
+  const { session, cfg, avisar } = useContext(Ctx);
+  const [d, setD] = useState(undefined);
+  const [retiro, setRetiro] = useState(null);
+  const [archivo, setArchivo] = useState(null);
+  const [monto, setMonto] = useState("");
+  const [nOp, setNOp] = useState("");
+  const [error, setError] = useState("");
+  const [enviando, setEnviando] = useState(false);
+  const [cancelando, setCancelando] = useState(false);
+
+  const cargar = useCallback(async () => {
+    const { data: p } = await sb.from("pedidos").select("*").eq("codigo", codigo).maybeSingle();
+    if (!p) return setD(null);
+    const [det, pag, ev] = await Promise.all([
+      sb.from("detalle_pedidos").select("*").eq("pedido_id", p.id).order("id"),
+      sb.from("pagos").select("id, metodo, estado, monto, motivo_rechazo, creado_at").eq("pedido_id", p.id).order("creado_at"),
+      sb.from("pedido_eventos").select("*").eq("pedido_id", p.id).order("creado_at"),
+    ]);
+    setD({ p, lineas: det.data || [], pagos: pag.data || [], eventos: ev.data || [] });
+    setMonto(String(Math.max(0, p.abono_minimo - p.monto_validado)));
+    if (p.estado === "listo_para_retiro") { const r = await sb.rpc("datos_retiro", { p_pedido_id: p.id }); setRetiro((r.data || [])[0] || null); }
+  }, [codigo]);
+  useEffect(() => { if (session) cargar(); }, [session, cargar]);
+
+  if (!session) return html`<div class="wrap lectura"><${Auth} titulo="Ingresa para ver tu pedido" /></div>`;
+  if (d === undefined) return html`<div class="wrap cargando">Cargando tu pedido…</div>`;
+  if (d === null) return html`<div class="wrap lectura"><div class="panel stack-s"><h2>No encontramos ese pedido en tu cuenta</h2><a href="#/pedidos">Ver mis pedidos</a></div></div>`;
+  const { p, lineas, pagos, eventos } = d;
+  const porPagar = Math.max(0, p.abono_minimo - p.monto_validado);
+  const rechazo = [...pagos].reverse().find(x => x.estado === "rechazado");
+
+  const subir = async e => {
+    e.preventDefault(); setError("");
+    if (!archivo) return setError("Adjunta la foto o el PDF del comprobante.");
+    if (!(Number(monto) > 0)) return setError("Escribe el monto que transferiste.");
+    setEnviando(true);
+    try {
+      const f = await prepararArchivo(archivo);
+      if (f.size > 5 * 1024 * 1024) throw new Error("El archivo pesa más de 5 MB. Sube una foto más liviana.");
+      const ext = f.type === "application/pdf" ? "pdf" : f.type === "image/png" ? "png" : f.type === "image/webp" ? "webp" : "jpg";
+      const path = `${session.user.id}/${p.id}/${Date.now()}.${ext}`;
+      const up = await sb.storage.from("comprobantes").upload(path, f, { contentType: f.type, upsert: false });
+      if (up.error) throw up.error;
+      const { error } = await sb.rpc("reportar_transferencia", { p_pedido_id: p.id, p_monto: Math.round(Number(monto)), p_comprobante_path: path, p_n_operacion: nOp.trim() || null });
+      if (error) throw error;
+      setArchivo(null); setNOp("");
+      avisar("Comprobante enviado. Te avisamos cuando lo validemos.");
+      await cargar();
+    } catch (err) { setError(traducirError(err)); }
+    finally { setEnviando(false); }
+  };
+  const cancelar = async () => {
+    const { error } = await sb.rpc("cancelar_pedido", { p_pedido_id: p.id, p_motivo: "Cancelado por el cliente" });
+    if (error) setError(traducirError(error)); else { avisar("Pedido cancelado"); setCancelando(false); cargar(); }
+  };
+
+  return html`<div class="wrap lectura stack">
+    <p><a href="#/pedidos">← Mis pedidos</a></p>
+    <div class="row between"><div class="stack-s"><p class="eyebrow">Pedido</p><h1 class="mono" style="font-family:var(--mono);font-stretch:100%">${p.codigo}</h1></div><${EstadoPill} estado=${p.estado} /></div>
+
+    ${p.estado === "pendiente_pago" && html`<section class="panel stack">
+      ${rechazo && html`<p class="aviso bad"><strong>No pudimos validar tu pago anterior:</strong> ${rechazo.motivo_rechazo}. Revisa el comprobante y vuelve a subirlo.</p>`}
+      <h2>Transfiere ${clp(porPagar)} para confirmar tu pedido</h2>
+      <p class="muted">Te guardamos los productos hasta el ${fecha(p.reservado_hasta)}. Después se liberan para otros clientes.</p>
+      ${bancoListo(cfg) ? html`<dl class="tabla-datos">
+        <dt>Banco</dt><dd>${cfg.banco_nombre}</dd><span></span>
+        <dt>Cuenta</dt><dd>${cfg.banco_tipo_cuenta}</dd><span></span>
+        <dt>Número</dt><dd>${cfg.banco_numero}</dd><${Copiar} texto=${cfg.banco_numero} />
+        <dt>RUT</dt><dd>${cfg.banco_rut}</dd><${Copiar} texto=${cfg.banco_rut} />
+        <dt>Titular</dt><dd>${cfg.banco_titular}</dd><span></span>
+        ${cfg.banco_email && html`<dt>Correo</dt><dd>${cfg.banco_email}</dd><${Copiar} texto=${cfg.banco_email} />`}
+        <dt>Monto</dt><dd>${clp(porPagar)}</dd><${Copiar} texto=${String(porPagar)} />
+        <dt>Comentario</dt><dd>Pedido ${p.codigo}</dd><${Copiar} texto=${"Pedido " + p.codigo} />
+      </dl>` : html`<p class="aviso warn">La tienda está terminando de configurar sus datos bancarios. Escríbenos y te los enviamos.</p>`}
+      <form class="stack" onSubmit=${subir}>
+        <h3>Sube tu comprobante</h3>
+        <label class="campo" for="t-arch">Foto o PDF del comprobante<input id="t-arch" type="file" accept="image/*,application/pdf" onChange=${e => setArchivo(e.target.files[0] || null)} /></label>
+        <div class="grid2">
+          <label class="campo" for="t-monto">Monto transferido<input id="t-monto" type="number" inputmode="numeric" min="1" step="1" value=${monto} onInput=${e => setMonto(e.target.value)} /></label>
+          <label class="campo" for="t-op">N° de operación <small>Opcional</small><input id="t-op" type="text" value=${nOp} onInput=${e => setNOp(e.target.value)} /></label>
+        </div>
+        <${MsgError} msg=${error} />
+        <button class="btn btn-main" disabled=${enviando}>${enviando ? "Enviando…" : "Enviar comprobante"}</button>
+      </form>
+      ${cancelando ? html`<div class="row"><span>¿Seguro? Los productos vuelven al catálogo.</span><button class="btn btn-bad" onClick=${cancelar}>Sí, cancelar pedido</button><button class="btn" onClick=${() => setCancelando(false)}>No</button></div>`
+        : html`<button class="link" style="align-self:flex-start" onClick=${() => setCancelando(true)}>Cancelar este pedido</button>`}
+    </section>`}
+
+    ${p.estado === "pendiente_validacion" && html`<p class="aviso warn"><strong>Estamos validando tu pago.</strong> Revisamos cada transferencia a mano contra nuestra cuenta; te avisamos por WhatsApp apenas esté listo.</p>`}
+    ${p.estado === "pagado" && html`<p class="aviso ok"><strong>Pago validado.</strong> Te avisamos cuando tu pedido esté ${p.metodo_entrega === "retiro_conserjeria" ? "listo en conserjería" : "en camino"}.</p>`}
+    ${p.estado === "listo_para_retiro" && html`<section class="panel stack">
+      <h2>Tu pedido está en conserjería</h2>
+      ${retiro ? html`<dl class="tabla-datos"><dt>Dirección</dt><dd>${retiro.direccion}</dd><span></span><dt>Horario</dt><dd>${retiro.horario}</dd><span></span><dt>Hasta</dt><dd>${fechaCorta(retiro.vence_at)}</dd><span></span></dl>
+        <p class="muted">Da tu nombre y este código al conserje:</p><div class="codigo-retiro">${retiro.codigo_retiro}</div>` : html`<p class="muted">Cargando datos de retiro…</p>`}
+    </section>`}
+    ${p.estado === "en_despacho" && html`<p class="aviso info"><strong>Tu pedido va en camino${p.comuna_entrega ? " a " + p.comuna_entrega : ""}.</strong> ${p.total - p.monto_validado > 0 ? `Saldo a pagar al recibir: ${clp(p.total - p.monto_validado)}.` : "Ya está todo pagado."}</p>`}
+    ${p.estado === "entregado" && html`<p class="aviso ok"><strong>Pedido entregado.</strong> ¡Gracias por comprarnos!</p>`}
+    ${p.estado === "expirado" && html`<p class="aviso bad"><strong>La reserva venció sin pago</strong> y los productos volvieron al catálogo. Si aún los quieres, haz un pedido nuevo.</p>`}
+    ${p.estado === "cancelado" && html`<p class="aviso bad"><strong>Pedido cancelado.</strong></p>`}
+
+    <section class="panel">
+      <h2 style="margin-bottom:8px">Productos</h2>
+      ${lineas.map(l => html`<div class="row between" key=${l.id} style="padding-block:8px;border-bottom:1px solid var(--line)"><span>${l.cantidad} × ${l.nombre_producto} <span class="mono muted">talla ${l.talla}</span></span><span class="precio">${clp(l.subtotal)}</span></div>`)}
+      <dl class="totales" style="margin-top:12px">
+        ${p.costo_envio > 0 && html`<dt>Envío ${p.comuna_entrega || ""}</dt><dd>${clp(p.costo_envio)}</dd>`}
+        <dt class="fuerte">Total</dt><dd class="fuerte">${clp(p.total)}</dd>
+        <dt>Pagado y validado</dt><dd>${clp(p.monto_validado)}</dd>
+      </dl>
+      <p class="muted" style="margin-top:8px">${entregaTexto(p.metodo_entrega)}${p.direccion_entrega ? " · " + p.direccion_entrega : ""}</p>
+    </section>
+
+    <section class="panel stack-s"><h2>Historial</h2>
+      <ol class="timeline">${eventos.map(ev => html`<li key=${ev.id}><span><b>${(ESTADOS[ev.estado_nuevo] || {}).label || ev.estado_nuevo}</b> <span class="muted">· ${fecha(ev.creado_at)}</span>${ev.nota ? html`<br /><span class="muted">${ev.nota}</span>` : ""}</span></li>`)}</ol>
+    </section>
+    <button class="btn" onClick=${cargar}>Actualizar estado</button>
+  </div>`;
+}
+
+// ---------- panel de administración ----------
+function useConfigAdmin() {
+  const [c, setC] = useState(null);
+  useEffect(() => { sb.from("config_tienda").select("*").maybeSingle().then(({ data }) => setC(data)); }, []);
+  return c;
+}
+
+function mensajeWA(p, c) {
+  const n = String(p.cliente || "").split(" ")[0];
+  const banco = lineaBanco(c);
+  switch (p.estado) {
+    case "pendiente_pago": return `Hola ${n}, te escribo por tu pedido ${p.codigo}. Para confirmarlo transfiere ${clp(Math.max(0, p.abono_minimo - p.monto_validado))}${banco ? " a: " + banco : ""}. Escribe "Pedido ${p.codigo}" en el comentario y sube el comprobante en la tienda. ¡Gracias!`;
+    case "pendiente_validacion": return `Hola ${n}, recibimos tu comprobante del pedido ${p.codigo}. Lo estamos validando y te aviso apenas esté listo.`;
+    case "pagado": return `Hola ${n}, validamos tu pago del pedido ${p.codigo}. Te aviso cuando esté ${p.metodo_entrega === "retiro_conserjeria" ? "listo en conserjería" : "en camino"}. ¡Gracias por tu compra!`;
+    case "listo_para_retiro": return `Hola ${n}, tu pedido ${p.codigo} ya está en la conserjería de ${c ? c.direccion_conserjeria : ""}. Puedes retirarlo ${c ? c.horario_conserjeria : ""} dando tu nombre y el código de retiro ${p.codigo_retiro}. Lo guardamos hasta el ${fechaCorta(p.retiro_vence_at)} inclusive.`;
+    case "en_despacho": return `Hola ${n}, tu pedido ${p.codigo} ya salió y va en camino a ${p.comuna_entrega || "tu dirección"}. ${p.saldo > 0 ? "Saldo a pagar al recibir: " + clp(p.saldo) + "." : "Ya está todo pagado."} Si no vas a estar, avísame por aquí.`;
+    case "entregado": return `Hola ${n}, tu pedido ${p.codigo} figura como entregado. ¡Gracias por comprarnos! Si necesitas cambio de talla, respóndeme este mensaje.`;
+    default: return `Hola ${n}, te escribo por tu pedido ${p.codigo}.`;
+  }
+}
+const waLink = (tel, msg) => `https://wa.me/${String(tel || "").replace(/\D/g, "")}?text=${encodeURIComponent(msg)}`;
+
+function AdminTabs({ actual }) {
+  const t = [["", "Por validar"], ["pedidos", "Pedidos"], ["productos", "Productos"], ["ajustes", "Ajustes"]];
+  return html`<nav class="tabs" aria-label="Panel">${t.map(([r, l]) => html`<a key=${r} href=${"#/admin" + (r ? "/" + r : "")} class=${actual === r ? "on" : ""}>${l}</a>`)}</nav>`;
+}
+
+function Admin({ ruta }) {
+  const { session, esAdmin, cargandoSesion } = useContext(Ctx);
+  if (cargandoSesion) return html`<div class="wrap cargando">Cargando…</div>`;
+  if (!session) return html`<div class="wrap lectura"><${Auth} titulo="Ingresa con tu cuenta de administrador" /></div>`;
+  if (!esAdmin) return html`<div class="wrap lectura"><div class="panel">Esta sección es solo para la administración de la tienda.</div></div>`;
+  const [sec, arg] = ruta;
+  const tab = sec === "pedido" ? "pedidos" : sec === "producto" ? "productos" : (sec || "");
+  return html`<div class="wrap"><${AdminTabs} actual=${tab} />
+    ${!sec && html`<${AdminValidar} />`}
+    ${sec === "pedidos" && html`<${AdminPedidos} />`}
+    ${sec === "pedido" && html`<${AdminPedido} codigo=${arg} />`}
+    ${sec === "productos" && html`<${AdminProductos} />`}
+    ${sec === "producto" && html`<${AdminProducto} id=${arg} />`}
+    ${sec === "ajustes" && html`<${AdminAjustes} />`}
+  </div>`;
+}
+
+function AdminValidar() {
+  const { avisar } = useContext(Ctx);
+  const [cola, setCola] = useState(null);
+  const [abierto, setAbierto] = useState({});
+  const [urls, setUrls] = useState({});
+  const [motivo, setMotivo] = useState({});
+  const [modo, setModo] = useState({});
+  const [error, setError] = useState("");
+  const cargar = useCallback(async () => {
+    const { data, error } = await sb.from("v_cola_validacion").select("*");
+    if (error) setError(traducirError(error));
+    setCola(data || []);
+  }, []);
+  useEffect(() => { cargar(); }, [cargar]);
+  const verComprobante = async r => {
+    if (urls[r.pago_id]) return setAbierto({ ...abierto, [r.pago_id]: !abierto[r.pago_id] });
+    const { data, error } = await sb.storage.from("comprobantes").createSignedUrl(r.comprobante_path, 600);
+    if (error) return setError(traducirError(error));
+    setUrls({ ...urls, [r.pago_id]: data.signedUrl }); setAbierto({ ...abierto, [r.pago_id]: true });
+  };
+  const decidir = async (r, aprobar) => {
+    setError("");
+    const { error } = await sb.rpc("validar_pago", { p_pago_id: r.pago_id, p_aprobar: aprobar, p_motivo: aprobar ? null : (motivo[r.pago_id] || "").trim() });
+    if (error) return setError(traducirError(error));
+    avisar(aprobar ? `Pago del pedido ${r.codigo} validado` : `Pago del pedido ${r.codigo} rechazado`);
+    setModo({ ...modo, [r.pago_id]: null });
+    cargar();
+  };
+  if (cola === null) return html`<p class="cargando">Cargando pagos…</p>`;
+  return html`<div class="stack lectura" style="max-width:760px">
+    <div class="row between"><h1>Pagos por validar</h1><button class="btn" onClick=${cargar}>Actualizar</button></div>
+    <p class="muted">Revisa cada monto en la app de tu banco o en el panel de la pasarela antes de validar. El comprobante es solo una pista.</p>
+    <${MsgError} msg=${error} />
+    ${cola.length === 0 ? html`<div class="panel">No hay pagos pendientes. Cuando un cliente suba un comprobante aparecerá aquí.</div>` :
+      cola.map(r => html`<article key=${r.pago_id} class=${"panel stack-s tarjeta-pago " + (r.alerta_pedido_cerrado ? "cerrado" : r.estado_pago === "confirmado_pasarela" ? "pasarela" : "")}>
+        <div class="row between"><a class="ticket" href=${"#/admin/pedido/" + encodeURIComponent(r.codigo)} style="text-decoration:none">${r.codigo}</a>
+          <span class=${"pill " + (r.estado_pago === "confirmado_pasarela" ? "ok" : "warn")}>${r.estado_pago === "confirmado_pasarela" ? "Pasarela confirmó" : "Comprobante subido"}</span></div>
+        <p><b>${r.cliente}</b> <span class="muted mono">${r.telefono}</span></p>
+        <dl class="totales"><dt>Monto reportado</dt><dd class="fuerte">${clp(r.monto)}</dd><dt>Total del pedido</dt><dd>${clp(r.total)}</dd><dt>Ya validado</dt><dd>${clp(r.monto_validado)}</dd><dt>Entrega</dt><dd style="font-family:var(--body)">${entregaTexto(r.metodo_entrega)}</dd></dl>
+        ${!r.cubre_abono && html`<p class="aviso warn">Este monto no alcanza el ${r.metodo_entrega === "retiro_conserjeria" ? "total" : "abono mínimo"} (${clp(r.abono_minimo)}). Si lo validas, el pedido seguirá esperando el resto.</p>`}
+        ${r.alerta_pedido_cerrado && html`<p class="aviso bad">El pedido ya está ${r.estado_pedido === "expirado" ? "vencido" : "cancelado"} y su stock se liberó. No se puede validar: devuelve el dinero o pídele que haga un pedido nuevo.</p>`}
+        <div class="row">
+          ${r.comprobante_path && html`<button class="btn-mini" onClick=${() => verComprobante(r)}>${abierto[r.pago_id] ? "Ocultar comprobante" : "Ver comprobante"}</button>`}
+          ${r.referencia_externa && html`<span class="mono muted">Ref. ${r.referencia_externa}</span>`}
+        </div>
+        ${abierto[r.pago_id] && urls[r.pago_id] && (r.comprobante_path.endsWith(".pdf") ? html`<a href=${urls[r.pago_id]} target="_blank" rel="noopener">Abrir PDF del comprobante</a>` : html`<a href=${urls[r.pago_id]} target="_blank" rel="noopener"><img class="comprobante" src=${urls[r.pago_id]} alt=${"Comprobante del pedido " + r.codigo} /></a>`)}
+        ${!r.alerta_pedido_cerrado && (modo[r.pago_id] === "validar" ? html`<div class="row"><span>¿Viste ${clp(r.monto)} en tu cuenta?</span><button class="btn btn-ok" onClick=${() => decidir(r, true)}>Sí, validar</button><button class="btn" onClick=${() => setModo({ ...modo, [r.pago_id]: null })}>Volver</button></div>`
+          : modo[r.pago_id] === "rechazar" ? html`<div class="stack-s"><label class="campo" for=${"mot-" + r.pago_id}>Motivo (lo verá el cliente)<input id=${"mot-" + r.pago_id} type="text" value=${motivo[r.pago_id] || ""} onInput=${e => setMotivo({ ...motivo, [r.pago_id]: e.target.value })} placeholder="Ej.: el monto no aparece en la cuenta" /></label>
+              <div class="row"><button class="btn btn-bad" disabled=${!(motivo[r.pago_id] || "").trim()} onClick=${() => decidir(r, false)}>Rechazar pago</button><button class="btn" onClick=${() => setModo({ ...modo, [r.pago_id]: null })}>Volver</button></div></div>`
+          : html`<div class="row"><button class="btn btn-ok" onClick=${() => setModo({ ...modo, [r.pago_id]: "validar" })}>Validar</button><button class="btn btn-bad" onClick=${() => setModo({ ...modo, [r.pago_id]: "rechazar" })}>Rechazar</button></div>`)}
+      </article>`)}
+  </div>`;
+}
+
+function AdminPedidos() {
+  const [filtro, setFiltro] = useState("abiertos");
+  const [lista, setLista] = useState(null);
+  useEffect(() => {
+    let q = sb.from("v_pedidos_admin").select("id, codigo, estado, total, saldo, cliente, metodo_entrega, creado_at").order("creado_at", { ascending: false }).limit(200);
+    if (filtro === "abiertos") q = q.in("estado", ABIERTOS); else if (filtro !== "todos") q = q.eq("estado", filtro);
+    setLista(null); q.then(({ data }) => setLista(data || []));
+  }, [filtro]);
+  const opciones = [["abiertos", "Abiertos"], ...Object.entries(ESTADOS).map(([k, v]) => [k, v.label]), ["todos", "Todos"]];
+  return html`<div class="stack">
+    <h1>Pedidos</h1>
+    <div class="chips">${opciones.map(([k, l]) => html`<button key=${k} class=${"chip " + (filtro === k ? "on" : "")} onClick=${() => setFiltro(k)}>${l}</button>`)}</div>
+    ${lista === null ? html`<p class="cargando">Cargando…</p>` : lista.length === 0 ? html`<div class="panel">No hay pedidos en esta vista.</div>` :
+      html`<div class="lista-pedidos">${lista.map(p => html`<a key=${p.id} class="item-pedido" href=${"#/admin/pedido/" + encodeURIComponent(p.codigo)}>
+        <span class="row"><span class="ticket">${p.codigo}</span><b>${p.cliente}</b></span><${EstadoPill} estado=${p.estado} />
+        <span class="muted">${fecha(p.creado_at)} · ${entregaTexto(p.metodo_entrega)}</span><span class="precio">${clp(p.total)}${p.saldo > 0 && !["cancelado", "expirado"].includes(p.estado) ? html` <span class="muted">· debe ${clp(p.saldo)}</span>` : ""}</span></a>`)}</div>`}
+  </div>`;
+}
+
+function AdminPedido({ codigo }) {
+  const { avisar } = useContext(Ctx);
+  const c = useConfigAdmin();
+  const [d, setD] = useState(undefined);
+  const [error, setError] = useState("");
+  const [confirmar, setConfirmar] = useState(null);
+  const [motivo, setMotivo] = useState("");
+  const [folio, setFolio] = useState("");
+  const [notas, setNotas] = useState("");
+  const cargar = useCallback(async () => {
+    const { data: p } = await sb.from("v_pedidos_admin").select("*").eq("codigo", codigo).maybeSingle();
+    if (!p) return setD(null);
+    const [det, pag, ev, cli] = await Promise.all([
+      sb.from("detalle_pedidos").select("*").eq("pedido_id", p.id).order("id"),
+      sb.from("pagos").select("*").eq("pedido_id", p.id).order("creado_at"),
+      sb.from("pedido_eventos").select("*").eq("pedido_id", p.id).order("creado_at"),
+      sb.from("clientes").select("email, acepta_whatsapp").eq("id", p.cliente_id).maybeSingle(),
+    ]);
+    setD({ p, lineas: det.data || [], pagos: pag.data || [], eventos: ev.data || [], cli: cli.data || {} });
+    setFolio(p.boleta_folio || ""); setNotas(p.notas_admin || "");
+  }, [codigo]);
+  useEffect(() => { cargar(); }, [cargar]);
+  if (d === undefined) return html`<p class="cargando">Cargando pedido…</p>`;
+  if (d === null) return html`<div class="panel">No existe el pedido ${codigo}.</div>`;
+  const { p, lineas, pagos, eventos, cli } = d;
+  const ejecutar = async (accion, args, ok) => {
+    setError("");
+    const { error } = await sb.rpc(accion, args);
+    if (error) return setError(traducirError(error));
+    avisar(ok); setConfirmar(null); setMotivo(""); cargar();
+  };
+  const guardarNotas = async () => {
+    const { error } = await sb.from("pedidos").update({ boleta_folio: folio.trim() || null, notas_admin: notas.trim() || null }).eq("id", p.id);
+    if (error) setError(traducirError(error)); else avisar("Notas guardadas");
+  };
+  const abierto = ABIERTOS.includes(p.estado);
+  const acciones = [];
+  if (p.estado === "pagado" && p.metodo_entrega === "retiro_conserjeria") acciones.push(["listo", "Dejar en conserjería", "btn-ok", () => ejecutar("cambiar_estado_pedido", { p_pedido_id: p.id, p_nuevo: "listo_para_retiro", p_nota: null }, "Pedido en conserjería")]);
+  if (p.estado === "pagado" && p.metodo_entrega === "envio_domicilio") acciones.push(["despachar", "Marcar como despachado", "btn-ok", () => ejecutar("cambiar_estado_pedido", { p_pedido_id: p.id, p_nuevo: "en_despacho", p_nota: null }, "Pedido en camino")]);
+  if (["pagado", "listo_para_retiro", "en_despacho"].includes(p.estado) && p.saldo > 0) acciones.push(["efectivo", `Registrar saldo cobrado (${clp(p.saldo)})`, "btn-denim", () => ejecutar("registrar_pago_manual", { p_pedido_id: p.id, p_metodo: "efectivo", p_monto: p.saldo, p_referencia: "Cobrado al entregar" }, "Saldo registrado")]);
+  if (["listo_para_retiro", "en_despacho"].includes(p.estado) && p.saldo <= 0) acciones.push(["entregar", "Marcar entregado", "btn-ok", () => ejecutar("cambiar_estado_pedido", { p_pedido_id: p.id, p_nuevo: "entregado", p_nota: null }, "Pedido entregado")]);
+  const accion = acciones.find(a => a[0] === confirmar);
+
+  return html`<div class="stack lectura" style="max-width:760px">
+    <p><a href="#/admin/pedidos">← Pedidos</a></p>
+    <div class="row between"><div class="stack-s"><span class="ticket" style="align-self:flex-start">${p.codigo}</span><h1>${p.cliente}</h1><p class="muted mono">${p.telefono} · ${cli.email || ""}</p></div><${EstadoPill} estado=${p.estado} /></div>
+    <${MsgError} msg=${error} />
+    ${abierto && html`<section class="panel stack-s">
+      <h2>Acciones</h2>
+      ${p.estado === "pendiente_validacion" && html`<p class="muted">Este pedido tiene un pago por revisar: <a href="#/admin">ve a Por validar</a>.</p>`}
+      ${p.estado === "pendiente_pago" && html`<p class="muted">Esperando que el cliente pague. La reserva vence el ${fecha(p.reservado_hasta)}.</p>`}
+      ${accion ? html`<div class="row"><span>¿Confirmas: ${accion[1].toLowerCase()}?</span><button class=${"btn " + accion[2]} onClick=${accion[3]}>Sí, confirmar</button><button class="btn" onClick=${() => setConfirmar(null)}>Volver</button></div>`
+        : html`<div class="row">${acciones.map(a => html`<button key=${a[0]} class=${"btn " + a[2]} onClick=${() => setConfirmar(a[0])}>${a[1]}</button>`)}</div>`}
+      <div class="row">
+        <a class="btn" href=${waLink(p.telefono, mensajeWA(p, c))} target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        ${confirmar === "cancelar" ? html`<span class="row"><input type="text" aria-label="Motivo de la cancelación" placeholder="Motivo" value=${motivo} onInput=${e => setMotivo(e.target.value)} style="max-width:260px" /><button class="btn btn-bad" onClick=${() => ejecutar("cancelar_pedido", { p_pedido_id: p.id, p_motivo: motivo.trim() || null }, "Pedido cancelado")}>Cancelar pedido</button><button class="btn" onClick=${() => setConfirmar(null)}>Volver</button></span>`
+          : html`<button class="btn btn-bad" onClick=${() => setConfirmar("cancelar")}>Cancelar pedido</button>`}
+      </div>
+      ${p.monto_validado > 0 && html`<p class="muted" style="font-size:0.88rem">Si cancelas, recuerda devolver los ${clp(p.monto_validado)} ya pagados.</p>`}
+    </section>`}
+    ${p.estado === "listo_para_retiro" && html`<section class="etiqueta-bolsa"><p class="eyebrow">Etiqueta para la bolsa</p><p class="mono" style="font-size:1.4rem">${p.codigo}</p><p style="font-size:1.2rem;font-weight:700">${p.cliente}</p><p class="mono" style="font-size:1.6rem;letter-spacing:0.2em">${p.codigo_retiro}</p><p class="muted">Entregar solo con nombre y código · hasta el ${fechaCorta(p.retiro_vence_at)}</p></section>`}
+    <section class="panel">
+      <h2 style="margin-bottom:8px">Productos</h2>
+      ${lineas.map(l => html`<div class="row between" key=${l.id} style="padding-block:8px;border-bottom:1px solid var(--line)"><span>${l.cantidad} × ${l.nombre_producto} <span class="mono muted">talla ${l.talla}</span></span><span class="precio">${clp(l.subtotal)}</span></div>`)}
+      <dl class="totales" style="margin-top:12px">
+        ${p.costo_envio > 0 && html`<dt>Envío ${p.comuna_entrega || ""}</dt><dd>${clp(p.costo_envio)}</dd>`}
+        <dt class="fuerte">Total</dt><dd class="fuerte">${clp(p.total)}</dd><dt>Abono mínimo</dt><dd>${clp(p.abono_minimo)}</dd><dt>Validado</dt><dd>${clp(p.monto_validado)}</dd><dt>Saldo</dt><dd>${clp(p.saldo)}</dd>
+      </dl>
+      <p class="muted" style="margin-top:8px">${entregaTexto(p.metodo_entrega)}${p.direccion_entrega ? ` · ${p.direccion_entrega}${p.referencia_entrega ? ", " + p.referencia_entrega : ""} (${p.comuna_entrega})` : ""}</p>
+      ${p.notas_cliente && html`<p class="aviso info" style="margin-top:8px">Nota del cliente: ${p.notas_cliente}</p>`}
+    </section>
+    <section class="panel stack-s"><h2>Pagos</h2>
+      ${pagos.length === 0 ? html`<p class="muted">Sin pagos todavía.</p>` : pagos.map(x => html`<div key=${x.id} class="row between" style="padding-block:6px;border-bottom:1px solid var(--line)"><span>${x.metodo} · <span class="muted">${fecha(x.creado_at)}</span>${x.motivo_rechazo ? html`<br /><span class="muted">${x.motivo_rechazo}</span>` : ""}</span><span class="row"><span class="precio">${clp(x.monto)}</span><span class=${"pill " + (x.estado === "validado" ? "ok" : x.estado === "rechazado" ? "bad" : "warn")}>${x.estado.replace("_", " ")}</span></span></div>`)}
+    </section>
+    <section class="panel stack-s"><h2>Boleta y notas internas</h2>
+      <div class="grid2"><label class="campo" for="a-folio">Folio de boleta<input id="a-folio" type="text" value=${folio} onInput=${e => setFolio(e.target.value)} /></label>
+      <label class="campo" for="a-notas">Notas internas<input id="a-notas" type="text" value=${notas} onInput=${e => setNotas(e.target.value)} /></label></div>
+      <button class="btn" style="align-self:flex-start" onClick=${guardarNotas}>Guardar</button>
+    </section>
+    <section class="panel stack-s"><h2>Historial</h2>
+      <ol class="timeline">${eventos.map(ev => html`<li key=${ev.id}><span><b>${(ESTADOS[ev.estado_nuevo] || {}).label || ev.estado_nuevo}</b> <span class="muted">· ${fecha(ev.creado_at)}</span>${ev.nota ? html`<br /><span class="muted">${ev.nota}</span>` : ""}</span></li>`)}</ol>
+    </section>
+  </div>`;
+}
+
+function AdminProductos() {
+  const [lista, setLista] = useState(null);
+  useEffect(() => { sb.from("productos").select("id, nombre, slug, categoria, precio, activo, imagenes, variantes_tallas(talla, stock, activo, orden)").order("creado_at", { ascending: false }).then(({ data }) => setLista(data || [])); }, []);
+  return html`<div class="stack">
+    <div class="row between"><h1>Productos</h1><a class="btn btn-main" href="#/admin/producto/nuevo">Nuevo producto</a></div>
+    ${lista === null ? html`<p class="cargando">Cargando…</p>` : lista.length === 0 ? html`<div class="panel">Aún no hay productos. Crea el primero.</div>` :
+      html`<div class="lista-pedidos">${lista.map(p => { const vs = (p.variantes_tallas || []).filter(v => v.activo).sort((a, b) => a.orden - b.orden); const st = vs.reduce((a, v) => a + v.stock, 0); return html`<a key=${p.id} class="item-pedido" href=${"#/admin/producto/" + p.id}>
+        <b>${p.nombre}</b><span>${p.activo ? html`<span class=${"pill " + (st > 0 ? "ok" : "bad")}>${st > 0 ? st + " en stock" : "Sin stock"}</span>` : html`<span class="pill neutral">Oculto</span>`}</span>
+        <span class="mono muted" style="font-size:0.85rem">${vs.map(v => v.talla + ":" + v.stock).join("  ") || "Sin tallas"}</span><span class="precio">${clp(p.precio)}</span></a>`; })}</div>`}
+  </div>`;
+}
+
+async function aWebp(file, max) {
+  try {
+    const bmp = await createImageBitmap(file);
+    const k = Math.min(1, (max || 1600) / Math.max(bmp.width, bmp.height));
+    const c = document.createElement("canvas"); c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+    c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+    const blob = await new Promise(r => c.toBlob(r, "image/webp", 0.85));
+    return blob || file;
+  } catch (e) { return file; }
+}
+
+function AdminProducto({ id }) {
+  const { avisar } = useContext(Ctx);
+  const nuevo = id === "nuevo";
+  const [f, setF] = useState({ nombre: "", slug: "", categoria: "", precio: "", descripcion: "", activo: true, imagenes: [] });
+  const [slugManual, setSlugManual] = useState(false);
+  const [filas, setFilas] = useState([]);
+  const [cats, setCats] = useState([]);
+  const [error, setError] = useState("");
+  const [subiendo, setSubiendo] = useState(false);
+  const [guardando, setGuardando] = useState(false);
+  const cargar = useCallback(async () => {
+    const { data: cs } = await sb.from("productos").select("categoria");
+    setCats([...new Set((cs || []).map(x => x.categoria))]);
+    if (nuevo) return;
+    const { data } = await sb.from("productos").select("*, variantes_tallas(*)").eq("id", id).maybeSingle();
+    if (!data) return setError("No existe este producto.");
+    setF({ nombre: data.nombre, slug: data.slug, categoria: data.categoria, precio: String(data.precio), descripcion: data.descripcion || "", activo: data.activo, imagenes: data.imagenes || [] });
+    setSlugManual(true);
+    setFilas((data.variantes_tallas || []).sort((a, b) => a.orden - b.orden || pesoTalla(a.talla) - pesoTalla(b.talla)).map(v => ({ ...v, precio_override: v.precio_override || "", _cambio: false })));
+  }, [id]);
+  useEffect(() => { cargar(); }, [cargar]);
+  const set = k => e => { const val = e.target.type === "checkbox" ? e.target.checked : e.target.value; const nf = { ...f, [k]: val }; if (k === "nombre" && !slugManual) nf.slug = slugify(val); setF(nf); };
+
+  const guardar = async () => {
+    setError("");
+    const datos = { nombre: f.nombre.trim(), slug: slugify(f.slug), categoria: slugify(f.categoria).replace(/-/g, " ").trim(), precio: Math.round(Number(f.precio)), descripcion: f.descripcion.trim() || null, activo: f.activo, imagenes: f.imagenes };
+    if (datos.nombre.length < 2 || !datos.slug || !datos.categoria || !(datos.precio > 0)) return setError("Completa nombre, categoría y precio.");
+    setGuardando(true);
+    const r = nuevo ? await sb.from("productos").insert(datos).select("id").single() : await sb.from("productos").update(datos).eq("id", id).select("id").single();
+    if (r.error) { setGuardando(false); return setError(/duplicate key/.test(r.error.message) ? "Ya existe un producto con esa dirección (slug). Cámbiala." : traducirError(r.error)); }
+    const pid = r.data.id;
+    for (const fila of filas.filter(x => x._cambio || !x.id)) {
+      if (!String(fila.talla).trim()) continue;
+      const v = { talla: String(fila.talla).trim(), orden: Number(fila.orden) || 0, stock: Math.max(0, Math.round(Number(fila.stock) || 0)), precio_override: Number(fila.precio_override) > 0 ? Math.round(Number(fila.precio_override)) : null, activo: !!fila.activo };
+      const q = fila.id ? await sb.from("variantes_tallas").update(v).eq("id", fila.id) : await sb.from("variantes_tallas").insert({ ...v, producto_id: pid, sku: (datos.slug + "-" + v.talla).toUpperCase() });
+      if (q.error) { setGuardando(false); return setError(`Talla ${v.talla}: ${/duplicate key/.test(q.error.message) ? "ya existe en este producto" : traducirError(q.error)}`); }
+    }
+    setGuardando(false);
+    avisar("Producto guardado");
+    if (nuevo) ir("admin/producto/" + pid); else cargar();
+  };
+
+  const subirFotos = async e => {
+    const files = [...e.target.files]; e.target.value = "";
+    if (!files.length) return;
+    if (nuevo) return setError("Guarda el producto primero y después agrega las fotos.");
+    setSubiendo(true); setError("");
+    const nuevas = [];
+    for (const file of files) {
+      const blob = await aWebp(file, 1600);
+      const ext = blob.type === "image/webp" ? "webp" : (file.name.split(".").pop() || "jpg").toLowerCase();
+      const path = `${id}/${Date.now()}-${Math.random().toString(36).slice(2, 7)}.${ext}`;
+      const { error } = await sb.storage.from("productos").upload(path, blob, { contentType: blob.type || file.type, upsert: false });
+      if (error) { setError(traducirError(error)); continue; }
+      nuevas.push(path);
+    }
+    const imagenes = [...f.imagenes, ...nuevas];
+    const { error } = await sb.from("productos").update({ imagenes }).eq("id", id);
+    setSubiendo(false);
+    if (error) return setError(traducirError(error));
+    setF({ ...f, imagenes }); if (nuevas.length) avisar(nuevas.length === 1 ? "Foto agregada" : nuevas.length + " fotos agregadas");
+  };
+  const moverFoto = async (path, accion) => {
+    let imagenes = f.imagenes.filter(x => x !== path);
+    if (accion === "portada") imagenes = [path, ...imagenes];
+    const { error } = await sb.from("productos").update({ imagenes }).eq("id", id);
+    if (error) return setError(traducirError(error));
+    if (accion === "quitar") await sb.storage.from("productos").remove([path]);
+    setF({ ...f, imagenes });
+  };
+  const agregarTallas = lista => {
+    const existentes = new Set(filas.map(x => String(x.talla).toUpperCase()));
+    const extra = lista.filter(t => !existentes.has(t.toUpperCase())).map((t, i) => ({ talla: t, orden: filas.length + i + 1, stock: 0, precio_override: "", activo: true, _cambio: true }));
+    setFilas([...filas, ...extra]);
+  };
+  const setFila = (i, k, val) => setFilas(filas.map((x, j) => j === i ? { ...x, [k]: val, _cambio: true } : x));
+
+  return html`<div class="stack lectura" style="max-width:820px">
+    <p><a href="#/admin/productos">← Productos</a></p>
+    <h1>${nuevo ? "Nuevo producto" : f.nombre || "Producto"}</h1>
+    <section class="panel stack">
+      <div class="grid2">
+        <label class="campo" for="pr-nombre">Nombre<input id="pr-nombre" type="text" value=${f.nombre} onInput=${set("nombre")} placeholder="Jeans Baggy Azul" /></label>
+        <label class="campo" for="pr-precio">Precio (CLP)<input id="pr-precio" type="number" inputmode="numeric" min="1" step="10" value=${f.precio} onInput=${set("precio")} placeholder="24990" /></label>
+        <label class="campo" for="pr-cat">Categoría<input id="pr-cat" type="text" list="lista-cats" value=${f.categoria} onInput=${set("categoria")} placeholder="jeans" /><datalist id="lista-cats">${cats.map(c => html`<option key=${c} value=${c} />`)}</datalist></label>
+        <label class="campo" for="pr-slug">Dirección en la tienda <small>#/p/${slugify(f.slug) || "…"}</small><input id="pr-slug" type="text" value=${f.slug} onInput=${e => { setSlugManual(true); setF({ ...f, slug: e.target.value }); }} /></label>
+      </div>
+      <label class="campo" for="pr-desc">Descripción<textarea id="pr-desc" value=${f.descripcion} onInput=${set("descripcion")} placeholder="Corte, tela, calce, medidas…"></textarea></label>
+      <label class="check" for="pr-activo"><input id="pr-activo" type="checkbox" checked=${f.activo} onChange=${set("activo")} />Visible en la tienda</label>
+    </section>
+
+    <section class="panel stack-s">
+      <div class="row between"><h2>Tallas y stock</h2><div class="row"><button class="btn-mini" onClick=${() => agregarTallas(["38", "40", "42", "44", "46", "48"])}>+ Tallas 38–48</button><button class="btn-mini" onClick=${() => agregarTallas(["S", "M", "L", "XL"])}>+ Tallas S–XL</button><button class="btn-mini" onClick=${() => setFilas([...filas, { talla: "", orden: filas.length + 1, stock: 0, precio_override: "", activo: true, _cambio: true }])}>+ Otra talla</button></div></div>
+      ${filas.length === 0 ? html`<p class="muted">Agrega al menos una talla con su stock.</p>` : html`<div class="tabla-scroll"><table class="edit"><thead><tr><th>Talla</th><th>Orden</th><th>Stock</th><th>Precio especial</th><th>Activa</th></tr></thead><tbody>
+        ${filas.map((x, i) => html`<tr key=${x.id || "n" + i}>
+          <td><input type="text" aria-label="Talla" value=${x.talla} disabled=${!!x.id} onInput=${e => setFila(i, "talla", e.target.value)} style="width:80px" /></td>
+          <td><input type="number" aria-label="Orden" value=${x.orden} onInput=${e => setFila(i, "orden", e.target.value)} style="width:70px" /></td>
+          <td><input type="number" aria-label=${"Stock talla " + x.talla} min="0" value=${x.stock} onInput=${e => setFila(i, "stock", e.target.value)} style="width:90px" /></td>
+          <td><input type="number" aria-label="Precio especial" min="0" placeholder="—" value=${x.precio_override} onInput=${e => setFila(i, "precio_override", e.target.value)} style="width:120px" /></td>
+          <td><input type="checkbox" aria-label="Activa" checked=${x.activo} onChange=${e => setFila(i, "activo", e.target.checked)} /></td></tr>`)}
+      </tbody></table></div>`}
+      <p class="muted" style="font-size:0.88rem">El orden define cómo se ven las tallas (38 antes que 40, S antes que M). "Precio especial" reemplaza el precio solo para esa talla.</p>
+    </section>
+
+    <section class="panel stack-s">
+      <h2>Fotos</h2>
+      ${nuevo ? html`<p class="muted">Guarda el producto para poder subir fotos.</p>` : html`
+        <div class="fotos-admin">${f.imagenes.map((im, i) => html`<figure key=${im}><img src=${imgUrl(im)} alt=${"Foto " + (i + 1)} />
+          <div class="row">${i === 0 ? html`<span class="pill ok">Portada</span>` : html`<button class="btn-mini" onClick=${() => moverFoto(im, "portada")}>Portada</button>`}<button class="btn-mini" onClick=${() => moverFoto(im, "quitar")}>Quitar</button></div></figure>`)}</div>
+        <label class="campo" for="pr-fotos">Agregar fotos <small>Se achican y comprimen solas antes de subir</small><input id="pr-fotos" type="file" accept="image/*" multiple onChange=${subirFotos} disabled=${subiendo} /></label>
+        ${subiendo && html`<p class="muted">Subiendo fotos…</p>`}`}
+    </section>
+    <${MsgError} msg=${error} />
+    <div class="row"><button class="btn btn-main" disabled=${guardando} onClick=${guardar}>${guardando ? "Guardando…" : nuevo ? "Crear producto" : "Guardar cambios"}</button>${!nuevo && html`<a class="btn" href=${"#/p/" + encodeURIComponent(f.slug)}>Ver en la tienda</a>`}</div>
+  </div>`;
+}
+
+function AdminAjustes() {
+  const { avisar, recargarConfig } = useContext(Ctx);
+  const [c, setC] = useState(null);
+  const [zonas, setZonas] = useState([]);
+  const [nueva, setNueva] = useState({ comuna: "", costo: "" });
+  const [error, setError] = useState("");
+  const cargar = useCallback(async () => {
+    const [{ data: cfg }, { data: zs }] = await Promise.all([sb.from("config_tienda").select("*").maybeSingle(), sb.from("zonas_despacho").select("*").order("comuna")]);
+    setC(cfg); setZonas(zs || []);
+  }, []);
+  useEffect(() => { cargar(); }, [cargar]);
+  if (!c) return html`<p class="cargando">Cargando ajustes…</p>`;
+  const set = k => e => setC({ ...c, [k]: e.target.value });
+  const guardar = async () => {
+    setError("");
+    const campos = ["horas_reserva", "porcentaje_abono_domicilio", "dias_max_conserjeria", "sector_retiro_publico", "direccion_conserjeria", "horario_conserjeria", "banco_nombre", "banco_tipo_cuenta", "banco_numero", "banco_rut", "banco_titular", "banco_email", "app_url", "webhook_notificaciones_url"];
+    const datos = {}; campos.forEach(k => { const v = c[k]; datos[k] = typeof v === "string" ? (v.trim() || null) : v; });
+    ["horas_reserva", "porcentaje_abono_domicilio", "dias_max_conserjeria"].forEach(k => { datos[k] = Math.round(Number(datos[k])); });
+    if (!datos.direccion_conserjeria || !datos.horario_conserjeria || !datos.sector_retiro_publico) return setError("La dirección, el horario y el sector de la conserjería son obligatorios.");
+    const { error } = await sb.from("config_tienda").update(datos).eq("id", true);
+    if (error) return setError(traducirError(error));
+    avisar("Ajustes guardados"); recargarConfig();
+  };
+  const guardarZona = async z => {
+    const { error } = await sb.from("zonas_despacho").update({ costo: Math.round(Number(z.costo)) || 0, activa: z.activa }).eq("id", z.id);
+    if (error) setError(traducirError(error)); else { avisar("Zona actualizada"); recargarConfig(); }
+  };
+  const agregarZona = async () => {
+    if (!nueva.comuna.trim()) return;
+    const { error } = await sb.from("zonas_despacho").insert({ comuna: nueva.comuna.trim(), costo: Math.round(Number(nueva.costo)) || 0, activa: true });
+    if (error) return setError(traducirError(error));
+    setNueva({ comuna: "", costo: "" }); cargar(); recargarConfig();
+  };
+  const campo = (k, label, tipo, ayuda) => html`<label class="campo" for=${"cf-" + k}>${label}${ayuda ? html` <small>${ayuda}</small>` : ""}<input id=${"cf-" + k} type=${tipo || "text"} value=${c[k] == null ? "" : c[k]} onInput=${set(k)} /></label>`;
+  return html`<div class="stack lectura" style="max-width:820px">
+    <h1>Ajustes</h1>
+    <section class="panel stack"><h2>Datos para transferencias</h2><p class="muted">Se muestran al cliente cuando confirma un pedido.</p>
+      <div class="grid2">${campo("banco_nombre", "Banco")}${campo("banco_tipo_cuenta", "Tipo de cuenta", "text", "Cuenta RUT, Vista, Corriente")}${campo("banco_numero", "Número de cuenta")}${campo("banco_rut", "RUT del titular")}${campo("banco_titular", "Nombre del titular")}${campo("banco_email", "Correo para el aviso", "email")}</div></section>
+    <section class="panel stack"><h2>Conserjería</h2>
+      <div class="grid2">${campo("sector_retiro_publico", "Sector visible en la tienda", "text", "Sin dirección exacta")}${campo("horario_conserjeria", "Horario de retiro", "text", "Ej.: de lunes a domingo, entre 9:00 y 21:00")}</div>
+      ${campo("direccion_conserjeria", "Dirección exacta", "text", "Solo la ve quien tiene su pedido listo para retirar")}
+      ${campo("dias_max_conserjeria", "Días que guardan el pedido", "number")}</section>
+    <section class="panel stack"><h2>Reservas y abonos</h2>
+      <div class="grid2">${campo("horas_reserva", "Horas de reserva sin pago", "number")}${campo("porcentaje_abono_domicilio", "Abono mínimo para despacho (%)", "number", "100 = pago total. Conserjería siempre exige el 100%")}</div></section>
+    <section class="panel stack"><h2>Avanzado</h2>
+      <div class="grid2">${campo("app_url", "Dirección de la tienda", "url")}${campo("webhook_notificaciones_url", "Webhook de notificaciones", "url", "URL de Make o de la función notificar-cliente")}</div></section>
+    <${MsgError} msg=${error} />
+    <button class="btn btn-main" style="align-self:flex-start" onClick=${guardar}>Guardar ajustes</button>
+
+    <section class="panel stack-s"><h2>Zonas de despacho</h2>
+      ${zonas.map((z, i) => html`<div key=${z.id} class="row" style="padding-block:6px;border-bottom:1px solid var(--line)">
+        <span style="min-width:160px;font-weight:600">${z.comuna}</span>
+        <input type="number" aria-label=${"Costo de envío a " + z.comuna} value=${z.costo} onInput=${e => setZonas(zonas.map((x, j) => j === i ? { ...x, costo: e.target.value } : x))} style="width:120px" />
+        <label class="check" for=${"z-" + z.id}><input id=${"z-" + z.id} type="checkbox" checked=${z.activa} onChange=${e => setZonas(zonas.map((x, j) => j === i ? { ...x, activa: e.target.checked } : x))} />Activa</label>
+        <button class="btn-mini" onClick=${() => guardarZona(zonas[i])}>Guardar</button></div>`)}
+      <div class="row"><input type="text" aria-label="Nueva comuna" placeholder="Comuna" value=${nueva.comuna} onInput=${e => setNueva({ ...nueva, comuna: e.target.value })} style="max-width:200px" /><input type="number" aria-label="Costo" placeholder="Costo" value=${nueva.costo} onInput=${e => setNueva({ ...nueva, costo: e.target.value })} style="max-width:120px" /><button class="btn-mini" onClick=${agregarZona}>Agregar comuna</button></div>
+    </section>
+  </div>`;
+}
+
+// ---------- aplicación ----------
+function Header({ ruta }) {
+  const { carrito, session, esAdmin } = useContext(Ctx);
+  const n = carrito.reduce((a, l) => a + l.cantidad, 0);
+  const r = ruta[0] || "";
+  return html`<header class="top"><div class="wrap top-in">
+    <a class="marca" href="#/">${NOMBRE_TIENDA}</a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#/" class=${r === "" || r === "p" ? "on" : ""}>Catálogo</a>
+      ${session && html`<a href="#/pedidos" class=${r === "pedidos" || r === "pedido" ? "on" : ""}>Mis pedidos</a>`}
+      ${esAdmin && html`<a href="#/admin" class=${r === "admin" ? "on" : ""}>Panel</a>`}
+      <a href="#/cuenta" class=${r === "cuenta" ? "on" : ""}>${session ? "Cuenta" : "Ingresar"}</a>
+      <a href="#/carrito" class=${r === "carrito" ? "on" : ""} aria-label=${"Carrito, " + n + " productos"}>Carrito<span class="badge">${n}</span></a>
+    </nav></div><div class="selvedge" aria-hidden="true"></div></header>`;
+}
+
+function App() {
+  const ruta = useRuta();
+  const [session, setSession] = useState(null);
+  const [cargandoSesion, setCargandoSesion] = useState(true);
+  const [perfil, setPerfil] = useState(null);
+  const [esAdmin, setEsAdmin] = useState(false);
+  const [cfg, setCfg] = useState(null);
+  const [zonas, setZonas] = useState([]);
+  const [carrito, setCarritoState] = useState(leerCarrito);
+  const [toast, setToast] = useState(null);
+  const [recuperando, setRecuperando] = useState(false);
+  const setCarrito = c => { setCarritoState(c); guardarCarrito(c); };
+  const avisar = (msg, tono) => setToast({ msg, tono: tono || "ok", id: Date.now() });
+  useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(null), 3500); return () => clearTimeout(t); }, [toast]);
+
+  const cargarPerfil = useCallback(async s => {
+    if (!s) { setPerfil(null); setEsAdmin(false); return; }
+    let { data } = await sb.from("clientes").select("*").eq("id", s.user.id).maybeSingle();
+    if (!data) {
+      const m = s.user.user_metadata || {};
+      if (m.nombre && m.telefono) {
+        const ins = await sb.from("clientes").insert({ id: s.user.id, nombre: m.nombre, telefono: m.telefono, email: s.user.email }).select().single();
+        data = ins.error ? (await sb.from("clientes").select("*").eq("id", s.user.id).maybeSingle()).data : ins.data;
+      }
+    }
+    setPerfil(data || null);
+    const r = await sb.rpc("es_admin");
+    setEsAdmin(r.data === true);
+  }, []);
+  const recargarConfig = useCallback(() => {
+    sb.rpc("config_publica").then(({ data }) => setCfg((data || [])[0] || null));
+    sb.from("zonas_despacho").select("*").eq("activa", true).order("comuna").then(({ data }) => setZonas(data || []));
+  }, []);
+
+  useEffect(() => {
+    sb.auth.getSession().then(({ data }) => { setSession(data.session); cargarPerfil(data.session).finally(() => setCargandoSesion(false)); });
+    const { data: sub } = sb.auth.onAuthStateChange((ev, s) => {
+      setSession(s);
+      if (ev === "PASSWORD_RECOVERY") setRecuperando(true);
+      if (ev === "SIGNED_IN" || ev === "SIGNED_OUT" || ev === "USER_UPDATED") setTimeout(() => cargarPerfil(s), 0);
+    });
+    recargarConfig();
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  const ctx = { session, cargandoSesion, perfil, esAdmin, cfg, zonas, carrito, setCarrito, avisar, recargarPerfil: () => cargarPerfil(session), recargarConfig };
+  const [r0, r1] = ruta;
+  let vista;
+  if (recuperando) vista = html`<${NuevaClave} alTerminar=${() => { setRecuperando(false); ir(""); }} />`;
+  else if (!r0) vista = html`<${Catalogo} />`;
+  else if (r0 === "p") vista = html`<${Producto} slug=${r1} />`;
+  else if (r0 === "carrito") vista = html`<${Carrito} />`;
+  else if (r0 === "cuenta") vista = html`<${Cuenta} />`;
+  else if (r0 === "pedidos") vista = html`<${MisPedidos} />`;
+  else if (r0 === "pedido") vista = html`<${PedidoCliente} codigo=${r1} />`;
+  else if (r0 === "admin") vista = html`<${Admin} ruta=${ruta.slice(1)} />`;
+  else vista = html`<div class="wrap"><div class="panel stack-s"><h2>Página no encontrada</h2><a href="#/">Ir al catálogo</a></div></div>`;
+
+  return html`<${Ctx.Provider} value=${ctx}>
+    <${Header} ruta=${ruta} />
+    <main>${vista}</main>
+    <footer><div class="wrap row between"><span><b>${NOMBRE_TIENDA}</b> · Concepción, Chile</span><span>Envíos en Concepción · Retiro en conserjería con pago previo</span>
+      ${WHATSAPP_TIENDA && html`<a href=${"https://wa.me/" + WHATSAPP_TIENDA} target="_blank" rel="noopener">Escríbenos por WhatsApp</a>`}</div></footer>
+    ${toast && html`<div class=${"toast " + (toast.tono === "bad" ? "bad" : "")} role="status" key=${toast.id}>${toast.msg}</div>`}
+  <//>`;
+}
+
+render(html`<${App} />`, document.getElementById("app"));
+</script>
+</body>
+</html>
