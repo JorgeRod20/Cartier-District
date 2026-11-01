@@ -18,6 +18,8 @@
   --line: #d6dae4;
   --denim: #283d70;
   --denim-soft: #e3e8f4;
+  --tela: #283d70;
+  --tela-ink: #eef1f8;
   --selvedge: #c4342b;
   --on-selvedge: #ffffff;
   --ok: #1d7448;
@@ -37,7 +39,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0d111c; --surface: #151b2b; --ink: #e8ebf3; --muted: #9aa3ba; --line: #283048;
-    --denim: #9db2ec; --denim-soft: #1c2640; --selvedge: #ee6b60; --on-selvedge: #1a0c0b;
+    --denim: #9db2ec; --denim-soft: #1c2640; --tela: #22305a; --tela-ink: #dfe5f5; --selvedge: #ee6b60; --on-selvedge: #1a0c0b;
     --ok: #63c896; --ok-soft: #13291f; --warn: #e5ac4a; --warn-soft: #2c2210;
     --bad: #f07c73; --bad-soft: #301615; --info: #8fb2f5; --info-soft: #17223c;
     color-scheme: dark;
@@ -45,7 +47,7 @@
 }
 :root[data-theme="dark"] {
   --bg: #0d111c; --surface: #151b2b; --ink: #e8ebf3; --muted: #9aa3ba; --line: #283048;
-  --denim: #9db2ec; --denim-soft: #1c2640; --selvedge: #ee6b60; --on-selvedge: #1a0c0b;
+  --denim: #9db2ec; --denim-soft: #1c2640; --tela: #22305a; --tela-ink: #dfe5f5; --selvedge: #ee6b60; --on-selvedge: #1a0c0b;
   --ok: #63c896; --ok-soft: #13291f; --warn: #e5ac4a; --warn-soft: #2c2210;
   --bad: #f07c73; --bad-soft: #301615; --info: #8fb2f5; --info-soft: #17223c;
   color-scheme: dark;
@@ -142,7 +144,7 @@ textarea { min-height: 80px; resize: vertical; }
 .card-body { padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 6px; }
 .precio { font-family: var(--mono); font-weight: 500; font-variant-numeric: tabular-nums; }
 .foto { aspect-ratio: 4 / 5; width: 100%; max-width: 100%; object-fit: cover; background: var(--denim-soft); }
-.foto-vacia { aspect-ratio: 4 / 5; width: 100%; max-width: 100%; display: grid; place-items: center; background: var(--denim); color: var(--surface); position: relative; overflow: hidden; }
+.foto-vacia { aspect-ratio: 4 / 5; width: 100%; max-width: 100%; display: grid; place-items: center; background: var(--tela); color: var(--tela-ink); position: relative; overflow: hidden; }
 .foto-vacia::after { content: ""; position: absolute; left: 0; right: 0; bottom: 18px; height: 5px; background: repeating-linear-gradient(90deg, var(--selvedge) 0 14px, transparent 14px 18px); }
 .foto-vacia span { font-family: var(--display); font-stretch: 125%; font-weight: 900; font-size: 2.6rem; letter-spacing: -0.02em; opacity: 0.9; }
 .agotado { opacity: 0.55; }
@@ -1290,7 +1292,9 @@ function App() {
   <//>`;
 }
 
-render(html`<${App} />`, document.getElementById("app"));
+const raiz = document.getElementById("app");
+raiz.textContent = "";
+render(html`<${App} />`, raiz);
 </script>
 </body>
 </html>
